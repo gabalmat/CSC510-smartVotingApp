@@ -10,16 +10,16 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/")
-public class HelloWorldController {
+public class SmartVotingController {
 
     private final String siteName;
 
-    public HelloWorldController(final String siteName) {
+    public SmartVotingController(final String siteName) {
         this.siteName = siteName;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView helloWorld() {
+    public ModelAndView smartVoting() {
         ModelAndView mav = new ModelAndView("index");
         mav.addObject("siteName", this.siteName);
         return mav;

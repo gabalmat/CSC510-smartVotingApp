@@ -5,9 +5,9 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import com.aws.codestar.projecttemplates.configuration.MvcConfig;
 
 /**
- * Utility to initialize the Spring MVC HelloWorld application.
+ * Utility to initialize the Spring MVC SmartVoting application.
  */
-public class HelloWorldAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class SmartVotingAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
