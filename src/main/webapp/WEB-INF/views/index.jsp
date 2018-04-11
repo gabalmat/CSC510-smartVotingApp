@@ -44,6 +44,7 @@
         <div class="text">
           <h1>Welcome to the SmartVoting Web Application</h1>
           <h3>Where you can vote for ANYTHING.</h3>
+          <h4>Testing update.</h4>
         </div>
       </div>
     </div>
