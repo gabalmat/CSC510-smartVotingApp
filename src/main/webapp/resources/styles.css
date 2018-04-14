@@ -16,7 +16,7 @@ html {
 }
 
 body {
-	font-size: 1.8rem;
+	font-size: 1.5rem;
 }
 
 h1, h2, h3 {
@@ -24,8 +24,8 @@ h1, h2, h3 {
 }
 
 h1 {
-	font-size: 3.5rem;
-	margin-bottom: 0.5rem;
+	font-size: 4rem;
+	margin-bottom: 20rem;
 }
 
 a {
@@ -95,6 +95,7 @@ footer .footer-contents {
 
 .message .text {
 	float: left;
+	text-align: center;
 }
 
 .message:after, .website-nav:after {
@@ -145,8 +146,8 @@ keyframes dash {to { stroke-dashoffset:0;
 	.message {
 		padding: 0;
 		width: 50%;
-		left: calc(50vw - 5rem);
-		top: calc(15vh - 5rem);
+		left: calc(50vw - 23rem);
+/* 		top: calc(15vh - 5rem); */
 	}
 	.message .text {
 		padding-right: 0rem;
@@ -166,11 +167,11 @@ keyframes dash {to { stroke-dashoffset:0;
 
 @media ( min-height : 500px) and (min-width: 1240px) {
 	.message {
-		left: calc(50vw - 10rem);
-		top: calc(25vh - 5rem);
+/* 		left: calc(50vw - 10rem); */
+/* 		top: calc(25vh - 5rem); */
 	}
 	h1 {
-		font-size: 5rem;
+		font-size: 10rem;
 	}
 	.message .twitter-link img {
 		width: 80%;
@@ -182,4 +183,20 @@ keyframes dash {to { stroke-dashoffset:0;
 	.graphics {
 		display: none;
 	}
+}
+
+.login-block, .reg-block {
+	border: 1.5px solid #fff;
+	width: fit-content;
+	padding: 10px;
+	border-radius: 6px;
+	margin: auto;
+	font-size: 2.5rem;
+	color: #fff;
+	background: none;
+	cursor: pointer;
+}
+
+.reg-block {
+	margin-top: 1.5rem;
 }
