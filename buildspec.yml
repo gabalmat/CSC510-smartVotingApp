@@ -35,7 +35,7 @@ artifacts:
     - 'ROOT/WEB-INF/lib/commons-logging-1.2.jar'
     - 'ROOT/WEB-INF/lib/javax.servlet-api-3.1.0.jar'
     - 'ROOT/WEB-INF/lib/javax.servlet.jsp-api-2.3.1.jar'
-    - 'ROOT/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar'
+    - 'ROOT/WEB-INF/lib/jstl-1.2.jar'
     - 'ROOT/WEB-INF/lib/spring-aop-4.3.14.RELEASE.jar'
     - 'ROOT/WEB-INF/lib/spring-beans-4.3.14.RELEASE.jar'
     - 'ROOT/WEB-INF/lib/spring-context-4.3.14.RELEASE.jar'
