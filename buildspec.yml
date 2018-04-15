@@ -24,14 +24,18 @@ artifacts:
   files:
     - 'ROOT/WEB-INF/classes/application.properties'
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/SmartVotingAppInitializer.class'
+    - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/SecurityWebApplicationInitializer'
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/configuration/ApplicationConfig.class'
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/configuration/MvcConfig.class'
+    - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/configuration/WebSecurityConfig.java'
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/controller/SmartVotingController.class'
     - 'ROOT/WEB-INF/lib/aopalliance-1.0.jar'
     - 'ROOT/WEB-INF/lib/commons-fileupload-1.3.3.jar'
     - 'ROOT/WEB-INF/lib/commons-io-2.5.jar'
     - 'ROOT/WEB-INF/lib/commons-logging-1.2.jar'
     - 'ROOT/WEB-INF/lib/javax.servlet-api-3.1.0.jar'
+    - 'ROOT/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar
+    - 'ROOT/WEB-INF/lib/javax.servlet.jsp-api-2.3.1.jar
     - 'ROOT/WEB-INF/lib/spring-aop-4.3.14.RELEASE.jar'
     - 'ROOT/WEB-INF/lib/spring-beans-4.3.14.RELEASE.jar'
     - 'ROOT/WEB-INF/lib/spring-context-4.3.14.RELEASE.jar'
@@ -39,7 +43,11 @@ artifacts:
     - 'ROOT/WEB-INF/lib/spring-expression-4.3.14.RELEASE.jar'
     - 'ROOT/WEB-INF/lib/spring-web-4.3.14.RELEASE.jar'
     - 'ROOT/WEB-INF/lib/spring-webmvc-4.3.14.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/spring-security-web-4.2.3.RELEASE.jar
+    - 'ROOT/WEB-INF/lib/spring-security-core-4.2.3.RELEASE.jar
+    - 'ROOT/WEB-INF/lib/spring-security-config-4.2.3.RELEASE.jar
     - 'ROOT/WEB-INF/views/index.jsp'
+    - 'ROOT/WEB-INF/views/login.jsp'
     - 'ROOT/resources/gradients.css'
     - 'ROOT/resources/set-background.js'
     - 'ROOT/resources/styles.css'

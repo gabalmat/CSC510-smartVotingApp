@@ -24,8 +24,9 @@
       <div class="message">
         <div class="text">
           <h1>${siteName}</h1> 
-          <div><input type="button" class="login-block" value="Login"></div>
-          <div><input type="button" class="reg-block" value="Register"></div>
+	  	  <h3>${message}</h3>
+	  	  <br>
+	  	  <a href='<spring:url value="/signout"/>'>Logout</a>
         </div>
       </div>
     </div>

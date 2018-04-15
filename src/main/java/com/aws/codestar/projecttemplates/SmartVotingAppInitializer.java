@@ -3,6 +3,7 @@ package com.aws.codestar.projecttemplates;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.aws.codestar.projecttemplates.configuration.MvcConfig;
+import com.aws.codestar.projecttemplates.configuration.WebSecurityConfig;
 
 /**
  * Utility to initialize the Spring MVC SmartVoting application.
@@ -12,13 +13,15 @@ public class SmartVotingAppInitializer extends AbstractAnnotationConfigDispatche
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class[] {
-                MvcConfig.class
+        		WebSecurityConfig.class
         };
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return null;
+    	return new Class[] {
+    			MvcConfig.class
+        };
     }
 
     @Override
