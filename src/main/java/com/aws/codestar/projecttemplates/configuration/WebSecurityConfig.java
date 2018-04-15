@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	      			System.out.println(authority.getAuthority());
 	      		}
 	      		System.out.println(auth.getName());
-	      		res.sendRedirect("/SmartVoting/"); // Redirect user to index/home page
+	      		res.sendRedirect("/"); // Redirect user to index/home page
 	      })
 //	    .defaultSuccessUrl("/")   // URL, where user will go after authenticating successfully.
 	                                // Skipped if successHandler() is used.
