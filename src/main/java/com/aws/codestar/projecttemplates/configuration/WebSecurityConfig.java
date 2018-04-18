@@ -3,6 +3,7 @@ package com.aws.codestar.projecttemplates.configuration;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,22 +12,24 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.GrantedAuthority;
 
+@Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-		@Autowired
-		private DataSource dataSource;
-
-	   @Override
-	   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	@Autowired
+	private DataSource dataSource;
+	
+	@Autowired
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	      // auth.inMemoryAuthentication()
 	      // .withUser("admin").password("admin123").roles("USER");
+		
 	   		auth.jdbcAuthentication().dataSource(dataSource)
-		        .usersByUsernameQuery("select username, password"
-		            + " from users where username=?");
-		        
-		        // .authoritiesByUsernameQuery("select user_id, role "
-		        //     + "from roles where user_id=?");
+		        .usersByUsernameQuery(
+		        		"select username, password, enabled from users where username=?")
+		        .authoritiesByUsernameQuery("select users.username, user_roles.role"
+		        		+ "from users join user_roles on users.id = user_roles.user_id"
+		        		+ "where users.username=?");
 	   }
 
 	   @Override
