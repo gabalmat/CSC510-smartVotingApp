@@ -1,5 +1,9 @@
 package com.aws.codestar.projecttemplates.configuration;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,10 +14,19 @@ import org.springframework.security.core.GrantedAuthority;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+		@Autowired
+		private DataSource dataSource;
+
 	   @Override
 	   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-	      auth.inMemoryAuthentication()
-	      .withUser("admin").password("admin123").roles("USER");
+	      // auth.inMemoryAuthentication()
+	      // .withUser("admin").password("admin123").roles("USER");
+	   		auth.jdbcAuthentication().dataSource(dataSource)
+		        .usersByUsernameQuery("select username, password"
+		            + " from users where username=?");
+		        
+		        // .authoritiesByUsernameQuery("select user_id, role "
+		        //     + "from roles where user_id=?");
 	   }
 
 	   @Override
