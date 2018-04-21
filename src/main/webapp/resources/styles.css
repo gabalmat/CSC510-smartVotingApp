@@ -221,3 +221,32 @@ keyframes dash {to { stroke-dashoffset:0;
 	padding: 4px;
 	margin: 2px 5px;
 }
+
+
+.search-form button {
+	border: 1.5px solid #fff;
+	width: fit-content;
+	padding: 4px 8px;
+	border-radius: 3px;
+	margin: 25px 0;
+	font-size: 1.5rem;
+	color: #236da6;
+	background: #fff;
+	cursor: pointer;
+	float: right;
+	font-weight: 550;
+}
+
+.search-form {
+	margin: auto;
+}
+
+.search-form td {
+	font-size: 2rem;
+}
+
+.search-form input {
+	border-radius: 3px;
+	padding: 4px;
+	margin: 2px 5px;
+}

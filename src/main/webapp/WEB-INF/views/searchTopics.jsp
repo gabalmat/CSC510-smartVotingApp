@@ -23,8 +23,19 @@
 
       <div class="message">
         <div class="text">
-          <h1>Search Topics Placeholder</h1> 
-	  	  <h3>Search Topics Placeholder</h3>
+          <h2>Type the search criteria below:</h2>
+
+          <form action='<spring:url value="/searchResults"/>' method="post">
+            <table class="search-form">
+              <tr>
+                <td>Search Criteria</td>
+                <td><input type="text" name="searchCriteria"></td>
+              </tr>
+              <tr>
+                <td colspan=2><button type="submit">Search</button></td>
+              </tr>
+            </table>
+          </form>
 
         </div>
       </div>
