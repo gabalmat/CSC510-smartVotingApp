@@ -48,6 +48,7 @@ artifacts:
     - 'ROOT/WEB-INF/lib/spring-security-core-4.2.3.RELEASE.jar'
     - 'ROOT/WEB-INF/lib/spring-security-config-4.2.3.RELEASE.jar'
     - 'ROOT/WEB-INF/lib/spring-jdbc-4.3.14.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/spring-tx-4.3.14.RELEASE.jar'
     - 'ROOT/WEB-INF/lib/postgresql-9.4-1206-jdbc42.jar'
     - 'ROOT/WEB-INF/lib/commons-dbcp2-2.1.1.jar'
     - 'ROOT/WEB-INF/lib/commons-pool2-2.4.2.jar'
