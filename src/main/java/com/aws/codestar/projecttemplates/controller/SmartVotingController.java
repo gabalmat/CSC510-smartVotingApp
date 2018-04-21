@@ -30,7 +30,11 @@ public class SmartVotingController {
         String username = context.getAuthentication().getName();
         
         mav.addObject("siteName", this.siteName);
-        mav.addObject("message", "Welcome to SmartVote " + username);
+        mav.addObject("welcomeMessage", "Welcome to SmartVote " + username);
+
+        mav.addObject("createTopic", "Create Topic");
+        mav.addObject("viewMyTopics", "View My Topics");
+        mav.addObject("searchTopics", "Search Topics");
         
         return mav;
     }

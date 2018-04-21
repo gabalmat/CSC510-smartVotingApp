@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>${siteName}</title>
+    <title>CreateTopicPlaceholder</title>
     <meta name="description" content="" />
 
     <spring:url value="/resources/gradients.css" var="gradientsCss" />
@@ -23,20 +23,9 @@
 
       <div class="message">
         <div class="text">
-          <h1>${siteName}</h1> 
-  	  	  <h3>${welcomeMessage}</h3>
-          <p></p>
-          <br/>
-          <img src="${pageContext.request.contextPath}/resources/images/blank-profile-picture.png" width="256" height="256">
-          <p></p>
-  	  	  <br/>
-          <p><b><a href='<spring:url value="/createTopic"/>'>${createTopic}</a></b></p>
-          <br/>
-          <p><b><a href='<spring:url value="/viewMyTopics"/>'>${viewMyTopics}</a></b></p>
-          <br/>
-          <p><b><a href='<spring:url value="/searchTopics"/>'>${searchTopics}</a></b></p>
-          <br/>
-	  	    <p><b><a href='<spring:url value="/signout"/>'>Logout</a></b></p>
+          <h1>Create Topic Placeholder</h1> 
+	  	  <h3>Create Topic Placeholder</h3>
+
         </div>
       </div>
     </div>
