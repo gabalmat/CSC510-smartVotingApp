@@ -21,15 +21,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-	      // auth.inMemoryAuthentication()
-	      // .withUser("admin").password("admin123").roles("USER");
 		
 	   		auth.jdbcAuthentication().dataSource(dataSource)
 		        .usersByUsernameQuery(
 		        		"select username, password, enabled from users where username=?")
 		        .authoritiesByUsernameQuery("select users.username, user_roles.role"
-		        		+ "from users join user_roles on users.id = user_roles.user_id"
-		        		+ "where users.username=?");
+		        		+ " from users join user_roles on users.id = user_roles.user_id"
+		        		+ " where users.username=?");
 	   }
 
 	   @Override
@@ -55,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	      			System.out.println(authority.getAuthority());
 	      		}
 	      		System.out.println(auth.getName());
-	      		res.sendRedirect("/"); // Redirect user to index/home page
+	      		res.sendRedirect("/SmartVoting/"); // Redirect user to index/home page
 	      })
 //	    .defaultSuccessUrl("/")   // URL, where user will go after authenticating successfully.
 	                                // Skipped if successHandler() is used.

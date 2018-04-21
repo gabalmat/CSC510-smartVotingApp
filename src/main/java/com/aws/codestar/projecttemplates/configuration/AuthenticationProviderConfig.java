@@ -1,20 +1,36 @@
 package com.aws.codestar.projecttemplates.configuration;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 
 @Configuration
+@PropertySource("classpath:application.properties")
 public class AuthenticationProviderConfig {
+	
+	/**
+     * Retrieved from properties file.
+     */
+	@Value("${spring.datasource.url}")
+	private String url;
+	@Value("${spring.datasource.username}")
+	private String username;
+	@Value("${spring.datasource.password}")
+	private String password;
+	@Value("${spring.datasource.driver-class-name}")
+	private String driver;
+	
 	@Bean(name = "dataSource")
 	public DriverManagerDataSource dataSource() {
 	    DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-	    driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
-	    driverManagerDataSource.setUrl("jdbc:postgresql://aa1mhv3msby6vii.cs7westvbs2e.us-west-2.rds.amazonaws.com:5432/ebdb");
-	    driverManagerDataSource.setUsername("DBAdmin");
-	    driverManagerDataSource.setPassword("star1234");
+	    driverManagerDataSource.setDriverClassName(driver);
+	    driverManagerDataSource.setUrl(url);
+	    driverManagerDataSource.setUsername(username);
+	    driverManagerDataSource.setPassword(password);
 	    return driverManagerDataSource;
 	}
     

@@ -2,6 +2,7 @@ package com.aws.codestar.projecttemplates;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import com.aws.codestar.projecttemplates.configuration.AuthenticationProviderConfig;
 import com.aws.codestar.projecttemplates.configuration.MvcConfig;
 import com.aws.codestar.projecttemplates.configuration.WebSecurityConfig;
 
