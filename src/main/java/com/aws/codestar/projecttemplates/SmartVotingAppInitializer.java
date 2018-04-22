@@ -14,7 +14,7 @@ public class SmartVotingAppInitializer extends AbstractAnnotationConfigDispatche
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class[] {
-        		WebSecurityConfig.class, MvcConfig.class, AuthenticationProviderConfig.class
+        		AuthenticationProviderConfig.class, WebSecurityConfig.class, MvcConfig.class
         };
     }
 

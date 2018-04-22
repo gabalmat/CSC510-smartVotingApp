@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
+import com.aws.codestar.projecttemplates.controller.PollController;
 import com.aws.codestar.projecttemplates.controller.SmartVotingController;
 import com.aws.codestar.projecttemplates.controller.SearchTopicsController;
 
@@ -28,6 +29,11 @@ public class ApplicationConfig {
     @Bean
     public SmartVotingController smartVoting() {
         return new SmartVotingController(this.siteName);
+    }
+    
+    @Bean
+    public PollController showForm() {
+    	return new PollController();
     }
 
     @Bean
