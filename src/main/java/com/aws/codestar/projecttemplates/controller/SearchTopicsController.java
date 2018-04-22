@@ -41,7 +41,7 @@ public class SearchTopicsController{
         ModelAndView mav = new ModelAndView("searchResults");
 
         // mav.addObject("searchResults", criteria.getCriteria());
-        mav.addObject("searchResults", criteria);
+        mav.addObject("searchResults", "results");
 
         return mav;
     }
