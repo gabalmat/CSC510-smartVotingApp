@@ -13,12 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-public class SearchTopicsController {
+public class SearchTopicsController{
 
     private final String siteName;
 
-    @ModelAttribute("searchCriteria")
-       public SearchCriteria setUpUserForm() {
+    @ModelAttribute("searchResults")
+       public SearchCriteria setUpSearch() {
           return new SearchCriteria();
     }
 
@@ -37,15 +37,25 @@ public class SearchTopicsController {
     }
 
     @PostMapping("/searchResults")
-    public ModelAndView searchResults(@ModelAttribute("searchCriteria") SearchCriteria criteria, Model model) {
-        ModelAndView mav = new ModelAndView("searchCriteria");
+    public ModelAndView searchResults(@ModelAttribute("searchResults") SearchCriteria criteria, Model model) {
+        ModelAndView mav = new ModelAndView("searchResults");
 
-        mav.addObject("searchResults", criteria.getCriteria());
-
-        System.out.println("Criteria : " + criteria.getCriteria());
+        // mav.addObject("searchResults", criteria.getCriteria());
+        mav.addObject("searchResults", criteria);
 
         return mav;
     }
+
+    // @PostMapping("/searchResults")
+    // public String searchResults(@ModelAttribute("searchResults") SearchCriteria criteria, Model model) {
+    //     ModelAndView mav = new ModelAndView("searchResults");
+
+    //     mav.addObject("searchResults", criteria.getCriteria());
+
+    //     System.out.println("Criteria : " + criteria.getCriteria());
+
+    //     return searchResults;
+    // }
 
 }
 

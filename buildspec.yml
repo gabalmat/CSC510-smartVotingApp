@@ -54,6 +54,7 @@ artifacts:
     - 'ROOT/WEB-INF/views/login.jsp'
     - 'ROOT/WEB-INF/views/createTopic.jsp'
     - 'ROOT/WEB-INF/views/viewMyTopics.jsp'
+    - 'ROOT/WEB-INF/views/searchTopics.jsp'
     - 'ROOT/WEB-INF/views/searchResults.jsp'
     - 'ROOT/resources/gradients.css'
     - 'ROOT/resources/set-background.js'
