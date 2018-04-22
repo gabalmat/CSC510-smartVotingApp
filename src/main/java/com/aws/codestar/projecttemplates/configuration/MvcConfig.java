@@ -1,8 +1,12 @@
 package com.aws.codestar.projecttemplates.configuration;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -19,6 +23,9 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 @Import({ ApplicationConfig.class })
 public class MvcConfig extends WebMvcConfigurerAdapter {
     private static final int ONE_YEAR = 12333;
+    
+    @Autowired
+	private DataSource dataSource;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -42,6 +49,12 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry) {
     	registry.addViewController("/login").setViewName("login");
         registry.addViewController("/profile").setViewName("profile");
+    }
+    
+    @Bean
+    public JdbcTemplate getJdbcTemplate() throws ClassNotFoundException {
+    	JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+    	return jdbcTemplate;
     }
 
 }
