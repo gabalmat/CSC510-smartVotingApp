@@ -1,5 +1,13 @@
 package com.aws.codestar.projecttemplates.controller;
 
+import java.util.List;
+import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +24,17 @@ import org.springframework.web.servlet.ModelAndView;
 public class SearchTopicsController{
 
     private final String siteName;
+
+    protected JdbcTemplate jdbcTemplateObject;
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+          this.dataSource = dataSource;
+          this.jdbcTemplateObject = new JdbcTemplate(dataSource);
+    }
 
     @ModelAttribute("searchResults")
        public SearchCriteria setUpSearch() {
@@ -40,22 +59,31 @@ public class SearchTopicsController{
     public ModelAndView searchResults(@ModelAttribute("searchResults") SearchCriteria criteria, Model model) {
         ModelAndView mav = new ModelAndView("searchResults");
 
-        // mav.addObject("searchResults", criteria.getCriteria());
-        mav.addObject("searchResults", "results");
+        // String crit = criteria.criteria;
+        String crit = "with";
+        List<SimplePoll> results = queryDB(crit);
+        
+
+        mav.addObject("searchResults", results.size());
 
         return mav;
     }
 
-    // @PostMapping("/searchResults")
-    // public String searchResults(@ModelAttribute("searchResults") SearchCriteria criteria, Model model) {
-    //     ModelAndView mav = new ModelAndView("searchResults");
+    public List queryDB(String criteria){
 
-    //     mav.addObject("searchResults", criteria.getCriteria());
-
-    //     System.out.println("Criteria : " + criteria.getCriteria());
-
-    //     return searchResults;
-    // }
+        List<SimplePoll> polls = jdbcTemplateObject.query(
+            "SELECT * FROM polls WHERE LOWER(title) LIKE ? OR LOWER(description) LIKE ?",
+            new Object[]{"%"+criteria+"%", "%"+criteria+"%"},
+            new RowMapper<SimplePoll>() {
+                public SimplePoll mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    SimplePoll poll = new SimplePoll();
+                    poll.setTitle(rs.getString("title"));
+                    poll.setID(rs.getInt("id"));
+                    return poll;
+                }
+            });
+        return polls;
+    }
 
 }
 
@@ -65,7 +93,7 @@ class SearchCriteria{
     private String criteria;
 
     public String getCriteria(){
-        return this.criteria;
+        return criteria;
     } 
 
     public void setCriteria(String criteria){
@@ -74,6 +102,30 @@ class SearchCriteria{
 
 }
 
+
+class SimplePoll{
+
+    private String title;
+
+    private int id;
+
+    public String getTitle(){
+        return title;
+    }
+
+    public int getID(){
+        return id;
+    }
+
+    public void setTitle(String title){
+        this.title =  title;
+    }
+
+    public void setID(int id){
+        this.id =  id;
+    }
+
+}
 
 
 
