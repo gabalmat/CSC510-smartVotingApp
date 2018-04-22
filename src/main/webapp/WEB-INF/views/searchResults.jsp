@@ -24,16 +24,18 @@
 
       <div class="message">
         <div class="text">
-          <h3>Print criteria ${criteria}</h3>
-          <h3>Found ${searchCount} results:</h3>
+          <h3>Search criteria: ${criteria}.</h3>
+          <h3>Found ${searchCount} results</h3>
 
           <table border="1">
               <th>No</th>
               <th>Title</th>
+              <th>Description</th>
               <c:forEach var="poll" items="${listPolls}" varStatus="status">
               <tr>
                   <td>${status.index + 1}</td>
                   <td>${poll.title}</td>
+                  <th>${poll.description}</th>
               </tr>
               </c:forEach>             
           </table>

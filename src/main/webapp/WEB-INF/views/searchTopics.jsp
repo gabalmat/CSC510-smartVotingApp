@@ -28,8 +28,8 @@
           <form action='<spring:url value="/searchResults"/>' method="post">
             <table class="search-form">
               <tr>
-                <td>Search Criteria</td>
-                <td><input type="text" name="searchCriteria"></td>
+                <td>Search Criteria: </td>
+                <td><input type="text" name="criteria" value="${criteria}" ></td>
               </tr>
               <tr>
                 <td colspan=2><button type="submit">Search</button></td>

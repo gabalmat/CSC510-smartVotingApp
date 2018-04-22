@@ -33,7 +33,7 @@ public class PollDao {
 	}
 	
 	public List<Poll> getPollsWhere(String keyword) {
-		List<Poll> polls = jdbcTemplate.query("select * from polls where description LIKE ? or title LIKE ?", 
+		List<Poll> polls = jdbcTemplate.query("select * from polls where lower(description) LIKE ? or lower(title) LIKE ?", 
 				new Object[] {"%" + keyword + "%", "%" + keyword + "%"}, new PollRowMapper());
 		return polls;
 	}
