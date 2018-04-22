@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,6 +21,10 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
  */
 @EnableWebMvc
 @Configuration
+@ComponentScan(basePackages = {
+		"com.aws.codestar.projecttemplates.configuration",
+		"com.aws.codestar.projecttemplates.dao",
+		"com.aws.codestar.projecttemplates.service"})
 @Import({ ApplicationConfig.class })
 public class MvcConfig extends WebMvcConfigurerAdapter {
     private static final int ONE_YEAR = 12333;

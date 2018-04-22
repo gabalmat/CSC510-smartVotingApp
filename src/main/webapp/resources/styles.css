@@ -19,13 +19,19 @@ body {
 	font-size: 1.5rem;
 }
 
-h1, h2, h3 {
+h1, h3 {
 	font-weight: normal;
 }
 
 h2 {
+	font-size: 4rem;
+	margin-bottom: 5rem;
+	font-weight: 600;	
+}
+
+h3 {
 	font-size: 3rem;
-	margin-bottom: 3rem;	
+	margin-bottom: 3rem;
 }
 
 h1 {
@@ -168,6 +174,11 @@ keyframes dash {to { stroke-dashoffset:0;
 	.page-content {
 		padding: 3rem 5rem;
 	}
+	.poll-content {
+		padding: 0;
+		width: 50%;
+		left: calc(50vw - 50rem);
+	}
 }
 
 @media ( min-height : 500px) and (min-width: 1240px) {
@@ -216,8 +227,32 @@ keyframes dash {to { stroke-dashoffset:0;
 	text-decoration: underline;
 }
 
-.login-form input {
+.login-form input, .login-form textarea {
 	border-radius: 3px;
 	padding: 4px;
 	margin: 2px 5px;
+}
+
+.new-title {
+	width: 250px;
+}
+
+.login-form textarea {
+	width: 250px;
+}
+
+.display-poll td {
+	padding: 8px;
+	margin: 2px 5px;
+	font-size: 2rem;
+}
+
+.first-td {
+	float: right;
+	font-weight: bold;
+	margin-right: 8px;
+}
+
+.cat-selection {
+	margin-top: 20px;
 }
