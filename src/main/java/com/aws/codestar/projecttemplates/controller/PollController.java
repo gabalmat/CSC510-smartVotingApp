@@ -1,5 +1,7 @@
 package com.aws.codestar.projecttemplates.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.Authentication;
@@ -28,6 +30,12 @@ public class PollController {
 	public String getPoll(@PathVariable int id, ModelMap pollModel) {
 		Poll poll = pollService.getPoll(id);
 		pollModel.addAttribute("poll", poll);
+		
+		//Example for retrieving all polls from database
+		List<Poll> polls = pollService.getPolls();
+		
+		//Example for retrieving polls containing the word 'polo'... only title and description fields will be searched
+		List<Poll> pollsWhere = pollService.getPollsWhere("polo");
 		
 		return "poll";
 	}

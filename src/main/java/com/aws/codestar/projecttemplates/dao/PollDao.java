@@ -1,5 +1,7 @@
 package com.aws.codestar.projecttemplates.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -23,5 +25,16 @@ public class PollDao {
 	public void addPoll(final Poll poll) {
 		jdbcTemplate.update("insert into polls (title, description, user_id) values(?,?,?)",
 				new Object[] { poll.getTitle(), poll.getDescription(), poll.getUserId() });
+	}
+	
+	public List<Poll> getPolls() {
+		List<Poll> polls = jdbcTemplate.query("select * from polls", new PollRowMapper());
+		return polls;
+	}
+	
+	public List<Poll> getPollsWhere(String keyword) {
+		List<Poll> polls = jdbcTemplate.query("select * from polls where description LIKE ? or title LIKE ?", 
+				new Object[] {"%" + keyword + "%", "%" + keyword + "%"}, new PollRowMapper());
+		return polls;
 	}
 }
