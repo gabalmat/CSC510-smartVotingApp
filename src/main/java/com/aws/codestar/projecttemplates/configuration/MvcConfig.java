@@ -53,10 +53,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
     	registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/createTopic").setViewName("createTopic");
-        registry.addViewController("/searchTopics").setViewName("searchTopics");
-        registry.addViewController("/searchResults").setViewName("searchResults");
-        registry.addViewController("/viewMyTopics").setViewName("viewMyTopics");
+        registry.addViewController("/createPolls").setViewName("createPolls");
     }
     
     @Bean

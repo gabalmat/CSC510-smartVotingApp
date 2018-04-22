@@ -37,4 +37,11 @@ public class PollDao {
 				new Object[] {"%" + keyword + "%", "%" + keyword + "%"}, new PollRowMapper());
 		return polls;
 	}
+
+	public List<Poll> getUserPolls(int id) {
+		List<Poll> polls = jdbcTemplate.query("select * from polls where user_id = ?", 
+				new Object[] {id}, new PollRowMapper());
+		return polls;
+	}
+
 }

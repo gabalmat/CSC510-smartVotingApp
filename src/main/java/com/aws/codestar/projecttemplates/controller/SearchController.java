@@ -20,11 +20,11 @@ public class SearchController{
     @Autowired
     private PollService pollService;
 
-    @RequestMapping(value = "/searchTopics", method = RequestMethod.GET)
-    public String searchTopics(ModelMap searchModel) {
+    @RequestMapping(value = "/searchPolls", method = RequestMethod.GET)
+    public String searchPolls(ModelMap searchModel) {
         String criteria = new String();
         searchModel.addAttribute("criteria", criteria);
-        return "searchTopics";
+        return "searchPolls";
     }
 
     @RequestMapping(value = "/searchResults", method = RequestMethod.POST)

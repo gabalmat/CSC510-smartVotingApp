@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>CreateTopicPlaceholder</title>
+    <title>CreatePollPlaceholder</title>
     <meta name="description" content="" />
 
     <spring:url value="/resources/gradients.css" var="gradientsCss" />
@@ -23,8 +23,8 @@
 
       <div class="message">
         <div class="text">
-          <h1>Create Topic Placeholder</h1> 
-	  	  <h3>Create Topic Placeholder</h3>
+          <h1>Create Poll Placeholder</h1> 
+	  	  <h3>Create Poll Placeholder</h3>
 
         </div>
       </div>

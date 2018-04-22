@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>SearchTopicsPlaceholder</title>
+    <title>SearchPolls</title>
     <meta name="description" content="" />
 
     <spring:url value="/resources/gradients.css" var="gradientsCss" />
@@ -23,7 +23,7 @@
 
       <div class="message">
         <div class="text">
-          <h2>Type the search criteria below to search for a topic:</h2>
+          <h2>Type the search criteria below to search for a poll:</h2>
 
           <form action='<spring:url value="/searchResults"/>' method="post">
             <table class="search-form">

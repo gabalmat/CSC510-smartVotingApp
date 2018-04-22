@@ -32,9 +32,9 @@ public class SmartVotingController {
         mav.addObject("siteName", this.siteName);
         mav.addObject("welcomeMessage", "Welcome to SmartVote " + username);
 
-        mav.addObject("createTopic", "Create Topic");
-        mav.addObject("viewMyTopics", "View My Topics");
-        mav.addObject("searchTopics", "Search Topics");
+        mav.addObject("createPoll", "Create Poll");
+        mav.addObject("viewMyPolls", "View My Polls");
+        mav.addObject("searchPolls", "Search Polls");
         
         return mav;
     }

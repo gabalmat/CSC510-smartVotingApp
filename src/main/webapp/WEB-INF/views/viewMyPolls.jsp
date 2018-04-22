@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>ViewMyTopicsPlaceholder</title>
+    <title>ViewMyPolls</title>
     <meta name="description" content="" />
 
     <spring:url value="/resources/gradients.css" var="gradientsCss" />
@@ -23,8 +23,21 @@
 
       <div class="message">
         <div class="text">
-          <h1>View My Favorite Topics Placeholder</h1> 
-	  	  <h3>View My Favorite Topics Placeholder</h3>
+          <h2>My Polls</h2>
+          <h3>Found ${myPollsCount} results</h3>
+
+          <table border="1">
+              <th>No</th>
+              <th>Title</th>
+              <th>Description</th>
+              <c:forEach var="poll" items="${listPolls}" varStatus="status">
+              <tr>
+                  <td>${status.index + 1}</td>
+                  <td>${poll.title}</td>
+                  <th>${poll.description}</th>
+              </tr>
+              </c:forEach>             
+          </table>
 
         </div>
       </div>

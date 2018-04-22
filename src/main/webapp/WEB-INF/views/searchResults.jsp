@@ -5,7 +5,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>ViewMyTopicsPlaceholder</title>
+    <title>SearchResults</title>
     <meta name="description" content="" />
 
     <spring:url value="/resources/gradients.css" var="gradientsCss" />
@@ -25,7 +25,7 @@
       <div class="message">
         <div class="text">
           <h3>Search criteria: ${criteria}.</h3>
-          <h3>Found ${searchCount} results</h3>
+          <h3>Found ${searchCount} results:</h3>
 
           <table border="1">
               <th>No</th>

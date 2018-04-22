@@ -10,6 +10,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import com.aws.codestar.projecttemplates.controller.PollController;
 import com.aws.codestar.projecttemplates.controller.SmartVotingController;
 import com.aws.codestar.projecttemplates.controller.SearchController;
+import com.aws.codestar.projecttemplates.controller.MyPollsController;
 
 
 /**
@@ -37,8 +38,13 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public SearchController searchTopics() {
+    public SearchController searchPolls() {
         return new SearchController();
+    }
+
+    @Bean
+    public MyPollsController myPolls() {
+        return new MyPollsController();
     }
 
     /**

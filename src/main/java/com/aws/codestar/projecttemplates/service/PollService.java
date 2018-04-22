@@ -29,4 +29,8 @@ public class PollService {
 	public List<Poll> getPollsWhere(final String whereClause) {
 		return pollDao.getPollsWhere(whereClause);
 	}
+
+	public List<Poll> getUserPolls(final int id) {
+		return pollDao.getUserPolls(id);
+	}
 }
