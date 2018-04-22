@@ -1,5 +1,8 @@
 package com.aws.codestar.projecttemplates.controller;
 
+import com.aws.codestar.projecttemplates.model.SimplePoll;
+import com.aws.codestar.projecttemplates.model.SearchCriteria;
+
 import java.util.List;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -37,8 +40,8 @@ public class SearchTopicsController{
     }
 
     @ModelAttribute("searchResults")
-       public SearchCriteria setUpSearch() {
-          return new SearchCriteria();
+    public SearchCriteria setUpSearch() {
+        return new SearchCriteria();
     }
 
     public SearchTopicsController(final String siteName) {
@@ -56,15 +59,16 @@ public class SearchTopicsController{
     }
 
     @PostMapping("/searchResults")
-    public ModelAndView searchResults(@ModelAttribute("searchResults") SearchCriteria criteria, Model model) {
+    public ModelAndView searchResults(@ModelAttribute("searchResults") SearchCriteria criteria) {
         ModelAndView mav = new ModelAndView("searchResults");
 
-        // String crit = criteria.criteria;
+        // String crit = criteria.getCriteria();
         String crit = "with";
-        List<SimplePoll> results = queryDB(crit);
+        mav.addObject("criteria", crit);
         
-
-        mav.addObject("searchResults", results.size());
+        List<SimplePoll> results = queryDB(crit);
+        mav.addObject("searchCount", results.size());
+        mav.addObject("listPolls", results);
 
         return mav;
     }
@@ -86,46 +90,4 @@ public class SearchTopicsController{
     }
 
 }
-
-
-class SearchCriteria{
-
-    private String criteria;
-
-    public String getCriteria(){
-        return criteria;
-    } 
-
-    public void setCriteria(String criteria){
-        this.criteria = criteria;
-    }
-
-}
-
-
-class SimplePoll{
-
-    private String title;
-
-    private int id;
-
-    public String getTitle(){
-        return title;
-    }
-
-    public int getID(){
-        return id;
-    }
-
-    public void setTitle(String title){
-        this.title =  title;
-    }
-
-    public void setID(int id){
-        this.id =  id;
-    }
-
-}
-
-
 

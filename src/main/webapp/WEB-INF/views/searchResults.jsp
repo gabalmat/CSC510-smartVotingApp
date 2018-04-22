@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -23,8 +24,20 @@
 
       <div class="message">
         <div class="text">
-          <h2>Search results:</h2>
-          <h1>${searchResults}</h1>
+          <h3>Print criteria ${criteria}</h3>
+          <h3>Found ${searchCount} results:</h3>
+
+          <table border="1">
+              <th>No</th>
+              <th>Title</th>
+              <c:forEach var="poll" items="${listPolls}" varStatus="status">
+              <tr>
+                  <td>${status.index + 1}</td>
+                  <td>${poll.title}</td>
+              </tr>
+              </c:forEach>             
+          </table>
+
         </div>
       </div>
     </div>
