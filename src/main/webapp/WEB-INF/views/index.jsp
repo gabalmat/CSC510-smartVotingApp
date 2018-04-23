@@ -30,7 +30,7 @@
           <img src="${pageContext.request.contextPath}/resources/images/blank-profile-picture.png" width="256" height="256">
           <p></p>
   	  	  <br/>
-          <p><b><a href='<spring:url value="/createPolls"/>'>${createPoll}</a></b></p>
+          <p><b><a href='<spring:url value="/addPoll"/>'>${createPoll}</a></b></p>
           <br/>
           <p><b><a href='<spring:url value="/viewMyPolls"/>'>${viewMyPolls}</a></b></p>
           <br/>
