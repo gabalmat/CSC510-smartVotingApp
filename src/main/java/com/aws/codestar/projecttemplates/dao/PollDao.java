@@ -23,8 +23,8 @@ public class PollDao {
 	}
 	
 	public void addPoll(final Poll poll) {
-		jdbcTemplate.update("insert into polls (title, description, user_id) values(?,?,?)",
-				new Object[] { poll.getTitle(), poll.getDescription(), poll.getUserId() });
+		jdbcTemplate.update("insert into polls (title, description, user_id, category_id) values(?,?,?,?)",
+				new Object[] { poll.getTitle(), poll.getDescription(), poll.getUserId(), poll.getCategoryId() });
 	}
 	
 	public List<Poll> getPolls() {
@@ -32,13 +32,13 @@ public class PollDao {
 		return polls;
 	}
 	
-	public List<Poll> getPollsWhere(String keyword) {
+	public List<Poll> getPollsWhere(final String keyword) {
 		List<Poll> polls = jdbcTemplate.query("select * from polls where lower(description) LIKE ? or lower(title) LIKE ?", 
 				new Object[] {"%" + keyword + "%", "%" + keyword + "%"}, new PollRowMapper());
 		return polls;
 	}
 
-	public List<Poll> getUserPolls(int id) {
+	public List<Poll> getUserPolls(final int id) {
 		List<Poll> polls = jdbcTemplate.query("select * from polls where user_id = ?", 
 				new Object[] {id}, new PollRowMapper());
 		return polls;

@@ -5,13 +5,15 @@ public class Poll {
 	private String title;
 	private String description;
 	private int userId;
+	private int categoryId;
 	
 	public Poll() {}
 	
-	public Poll(String title, String description, int userId) {
+	public Poll(String title, String description, int userId, int categoryId) {
 		this.title = title;
 		this.description = description;
-		this.setUserId(userId);
+		this.userId = userId;
+		this.setCategoryId(categoryId);
 	}
 	
 	public String getTitle() {
@@ -33,6 +35,14 @@ public class Poll {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 	
 	
