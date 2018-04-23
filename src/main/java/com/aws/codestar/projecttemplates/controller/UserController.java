@@ -47,7 +47,6 @@ public class UserController {
         user.setLastName(lastName);
         user.setFirstName(firstName);
         user.setEmail(email);
-        // user.setUserid(userId);
 
         try {
             userService.addUser(user);
