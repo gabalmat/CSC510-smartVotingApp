@@ -31,11 +31,13 @@
               <th>No</th>
               <th>Title</th>
               <th>Description</th>
+              <th>Link</th>
               <c:forEach var="poll" items="${listPolls}" varStatus="status">
               <tr>
                   <td>${status.index + 1}</td>
                   <td>${poll.title}</td>
                   <th>${poll.description}</th>
+                  <th><b><a href='<spring:url value="/poll/${poll.pollId}"/>'>View Poll</a></b></th>
               </tr>
               </c:forEach>             
           </table>

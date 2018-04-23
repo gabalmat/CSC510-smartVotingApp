@@ -54,6 +54,7 @@ public class PollController {
 		User user = userService.getUser(userName);
 		int id = user.getUserid();
 		
+		// need to generate pollId
 		Poll poll = new Poll();
 		poll.setTitle(title);
 		poll.setDescription(description);
