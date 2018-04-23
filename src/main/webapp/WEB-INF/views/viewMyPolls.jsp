@@ -25,7 +25,7 @@
       <div class="message">
         <div class="text">
           <h2>My Polls</h2>
-          <h3>Found ${myPollsCount} results</h3>
+          <h3>You have ${myPollsCount} polls:</h3>
 
           <table border="1">
               <th>No</th>
@@ -41,7 +41,9 @@
               </tr>
               </c:forEach>             
           </table>
-
+          <p></p>
+          <br/>
+          <p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>
         </div>
       </div>
     </div>

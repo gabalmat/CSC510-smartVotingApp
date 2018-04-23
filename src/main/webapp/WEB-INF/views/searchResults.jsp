@@ -41,7 +41,9 @@
               </tr>
               </c:forEach>             
           </table>
-
+          <p></p>
+          <br/>
+          <p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>
         </div>
       </div>
     </div>

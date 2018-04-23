@@ -33,6 +33,9 @@
 					<tr>
 						<td>${poll.description}</td>
 				</table>
+                <p></p>
+                <br/>
+                <p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>
 	    	</div>
 	    </div>
 	</div>

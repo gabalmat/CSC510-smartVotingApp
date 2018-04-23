@@ -25,9 +25,9 @@
 	    
 	    <div class="message poll-content">
 	    	<div class="text">
-	    		<h2>User created?</h2>
 				<c:if test="${not empty success}">
                     <h2>${success}</h2>
+                    <h2>Please go back to the home page and login to proceed.</h2>
 				</c:if>
                 <c:if test="${not empty failure}">
                     <h3>User not created, internal error:</h3>
@@ -37,6 +37,9 @@
                     <h2>${userExists}</h2>
                     <h3>${reason}</h3>
                 </c:if>
+                <p></p>
+                <br/>
+                <p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>
 	    	</div>
 	    </div>
 	</div>

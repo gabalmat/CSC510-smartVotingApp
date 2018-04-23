@@ -51,6 +51,9 @@
           </table>
         </form>
         <h3>* Denotes a required field.</h3>
+        <p></p>
+        <br/>
+        <p><b><a href='<spring:url value="/login"/>'>Login Page</a></b></p>
       </div>
     </div>
   </div>
