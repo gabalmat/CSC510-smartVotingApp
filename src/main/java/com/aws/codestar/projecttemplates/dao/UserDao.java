@@ -21,8 +21,8 @@ public class UserDao {
 	}
 
     public void addUser(final User user) {
-        jdbcTemplate.update("insert into users (id, username, password, first_name, last_name, email) values(?,?,?,?,?,?)",
-                new Object[] { user.getUserid(), user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail() });
+        jdbcTemplate.update("insert into users (username, password, first_name, last_name, email, enabled) values(?,?,?,?,?,true)",
+                new Object[] { user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail() });
     }
 
 }

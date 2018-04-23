@@ -26,11 +26,16 @@
 	    <div class="message poll-content">
 	    	<div class="text">
 	    		<h2>User created?</h2>
-				<c:if test="${not empty msgGood}">
-                    <h2>${msgGood}</h2>
+				<c:if test="${not empty success}">
+                    <h2>${success}</h2>
 				</c:if>
-                <c:if test="${not empty msgBad}">
-                    <h2>${msgBad}</h2>
+                <c:if test="${not empty failure}">
+                    <h3>User not created, internal error:</h3>
+                    <h3>${failure}</h3>
+                </c:if>
+                <c:if test="${not empty userExists}">
+                    <h2>${userExists}</h2>
+                    <h3>${reason}</h3>
                 </c:if>
 	    	</div>
 	    </div>

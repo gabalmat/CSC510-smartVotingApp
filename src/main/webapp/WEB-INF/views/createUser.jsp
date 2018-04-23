@@ -26,12 +26,16 @@
         <form method="POST" name="add_user" action="<%=request.getContextPath()%>/userCreateResult">
           <table class=login-form>
             <tr>
-              <td class="first-td"><label>Username: </label></td>
+              <td class="first-td"><label>* Username: </label></td>
               <td><input name="username" value="${username}" type="text"/></td>
             </tr>
             <tr>
-              <td class="first-td"><label>Password: </label></td>
+              <td class="first-td"><label>* Password: </label></td>
               <td><input name="password" value="${password}" type="password"/></td>
+            </tr>
+            <tr>
+              <td class="first-td"><label>* Email: </label></td>
+              <td><input name="email" value="${email}" type="text"/></td>
             </tr>
             <tr>
               <td class="first-td"><label>First Name: </label></td>
@@ -42,18 +46,11 @@
               <td><input name="lastName" value="${lastName}" type="text"/></td>
             </tr>
             <tr>
-              <td class="first-td"><label>Email: </label></td>
-              <td><input name="email" value="${email}" type="text"/></td>
-            </tr>
-            <tr>
-              <td class="first-td"><label>UserId: </label></td>
-              <td><input name="userId" value="${userId}" type="text"/></td>
-            </tr>
-            <tr>
               <td colspan=2><button type="submit">CREATE</button></td>
             </tr>
           </table>
         </form>
+        <h3>* Denotes a required field.</h3>
       </div>
     </div>
   </div>

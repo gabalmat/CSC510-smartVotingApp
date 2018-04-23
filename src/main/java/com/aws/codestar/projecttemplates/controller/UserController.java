@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.DataAccessException;
+
 import com.aws.codestar.projecttemplates.model.Poll;
 import com.aws.codestar.projecttemplates.model.User;
 import com.aws.codestar.projecttemplates.service.PollService;
@@ -28,27 +31,37 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userCreateResult", method = RequestMethod.POST)
-    public String addUser(
-            @RequestParam(value = "username", required = true) String username,
+    public String addUser(@RequestParam(value = "username", required = true) String username,
             @RequestParam(value = "password", required = true) String password,
-            @RequestParam(value = "lastName", required = false) String lastName, 
-            @RequestParam(value = "firstName", required = false) String firstName,
-            @RequestParam(value = "email", required = false) String email,
-            @RequestParam(value = "userId", required = true) String userId,
+            @RequestParam(value = "lastName", defaultValue = " ") String lastName, 
+            @RequestParam(value = "firstName", defaultValue = " ") String firstName,
+            @RequestParam(value = "email", required = true) String email,
             ModelMap userModel) {
-        
-        // User user = new User();
-        // user.setUsername(username)
-        // user.setPassword(password)
-        // user.setLastName(lastName)
-        // user.setFirstName(firstName)
-        // user.setEmail(email)
-        // user.setUserid(userId)
-        // userService.addUser(user);
 
-        // userModel.addAttribute("msgGood", "User added successfully");
-        userModel.addAttribute("msgBad", "User not added");
-        // userModel.addAttribute("user", user);
+        // TODO: validate email? password strength?
+        // https://stackoverflow.com/questions/37746428/java-spring-how-to-handle-missing-required-request-parameters
+        
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setLastName(lastName);
+        user.setFirstName(firstName);
+        user.setEmail(email);
+        // user.setUserid(userId);
+
+        try {
+            userService.addUser(user);
+            userModel.addAttribute("success", "User added successfully");
+            userModel.addAttribute("user", user);
+        } catch (DuplicateKeyException e) {
+            userModel.addAttribute("userExists", "User already exists");
+            String reason = "Message: " + e.getMessage() + " | Root cause: " + e.getRootCause();
+            userModel.addAttribute("reason", reason);
+        } catch (DataAccessException e) {
+            String reason = "Message: " + e.getMessage() + " | Root cause: " + e.getRootCause();
+            userModel.addAttribute("failure", reason);
+        }
+
         return "userCreateResult";
     }
 
