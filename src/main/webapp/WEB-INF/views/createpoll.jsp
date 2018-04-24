@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,35 +24,29 @@
     <div class="message">
       <div class="text">
         <h2>Create a New Poll</h2>
-        <form method="POST" name="add_poll" action="<%=request.getContextPath()%>/add/poll">
+        <form:form method="POST" action="${pageContext.request.contextPath}/add/poll" modelAttribute="newPoll">
           <table class=login-form>
             <tr>
-              <td class="first-td"><label>Title: </label></td>
-              <td><input class="new-title" name="title" value="${title}" type="text"/></td>
+              <td class="first-td"><form:label path="title">Title: </form:label></td>
+              <td><form:input class="new-title" path="title"></form:input></td>
             </tr>
             <tr>
-              <td class="first-td"><label>Description: </label></td>
-              <td><textarea name="description" rows=7></textarea></td>
-            </tr>
-            <!-- <tr>
-              <td class="cat-selection first-td"><label>Category: </label></td>
-              <td class="cat-selection">Select One: </td>
+              <td class="first-td"><form:label path="description">Description: </form:label></td>
+              <td><form:textarea path="description" rows="7"></form:textarea></td>
             </tr>
             <tr>
-              <td colspan=2>
-                <table>
-                  <tr>
-                    <td>Category</td>
-                    <td>Description</td>
-                  </tr>
-                </table>
+              <td class="cat-selection first-td"><form:label path="categoryId">Category: </form:label></td>
+              <td class="cat-selection">
+              	<form:select path="categoryId">
+              		<form:options items="${categoryList}" itemValue="id" itemLabel="name" />
+              	</form:select>
               </td>
-            </tr> -->
+            </tr>
             <tr>
               <td colspan=2><button type="submit">CREATE</button></td>
             </tr>
           </table>
-        </form>
+        </form:form>
       </div>
     </div>
   </div>

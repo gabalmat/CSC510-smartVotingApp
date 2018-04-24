@@ -24,7 +24,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 @ComponentScan(basePackages = {
 		"com.aws.codestar.projecttemplates.configuration",
 		"com.aws.codestar.projecttemplates.dao",
-		"com.aws.codestar.projecttemplates.service"})
+		"com.aws.codestar.projecttemplates.service",
+		"com.aws.codestar.projecttemplates.controller"})
 @Import({ ApplicationConfig.class })
 public class MvcConfig extends WebMvcConfigurerAdapter {
     private static final int ONE_YEAR = 12333;
