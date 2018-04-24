@@ -24,7 +24,7 @@
       <div class="message">
         <div class="text">
           <h1>${siteName}</h1> 
-  	  	  <h3>${welcomeMessage}</h3>
+  	  	  <h3 class="margin-bottom-3">${welcomeMessage}</h3>
           <p></p>
           <br/>
           <img src="${pageContext.request.contextPath}/resources/images/blank-profile-picture.png" width="256" height="256">

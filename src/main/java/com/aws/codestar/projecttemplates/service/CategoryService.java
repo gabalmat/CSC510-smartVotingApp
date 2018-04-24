@@ -14,6 +14,10 @@ public class CategoryService {
 	@Autowired
 	private CategoryDao catDao;
 	
+	public Category getCategory(final int id) {
+		return catDao.getCategory(id);
+	}
+	
 	public Category getCategoryByName(final String name) {
 		return catDao.getCategoryByName(name);
 	}

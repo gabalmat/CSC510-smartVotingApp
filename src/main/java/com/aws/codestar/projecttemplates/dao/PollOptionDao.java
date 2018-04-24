@@ -17,6 +17,11 @@ public class PollOptionDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	public PollOption getPollOption(final int id) {
+		PollOption option = jdbcTemplate.queryForObject("select * from poll_options where id = ?", new Object[] {id}, new PollOptionRowMapper());
+		return option;
+	}
+	
 	public List<PollOption> getPollOptionsByPoll(final int pollId) {
 		List<PollOption> pollOptions = jdbcTemplate.query("select * from poll_options where poll_id = ?", 
 				new Object[] {pollId}, new PollOptionRowMapper());

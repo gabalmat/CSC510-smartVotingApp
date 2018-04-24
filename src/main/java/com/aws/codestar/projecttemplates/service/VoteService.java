@@ -29,5 +29,9 @@ public class VoteService {
     public List<Vote> getVotesByPollId(final int pollId) {
         return voteDao.getVotesByPollId(pollId);
     }
+    
+    public List<Vote> getVotesByPollIdAndUserId(final int pollId, final int userId) {
+    	return voteDao.getVotesByPollIdAndUserId(pollId, userId);
+    }
 
 }

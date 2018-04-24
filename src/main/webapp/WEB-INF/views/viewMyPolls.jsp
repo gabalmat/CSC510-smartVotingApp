@@ -22,7 +22,7 @@
         <nav class="website-nav"></nav>
       </header>
 
-      <div class="message">
+      <div class="message poll-content">
         <div class="text">
           <h2>My Polls</h2>
           <h3>You have ${myPollsCount} polls:</h3>

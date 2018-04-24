@@ -14,6 +14,10 @@ public class PollOptionService {
 	@Autowired
 	private PollOptionDao pollOptionDao;
 	
+	public PollOption getPollOption(final int id) {
+		return pollOptionDao.getPollOption(id);
+	}
+	
 	public List<PollOption> getPollOptionsByPoll(final int pollId) {
 		return pollOptionDao.getPollOptionsByPoll(pollId);
 	}
