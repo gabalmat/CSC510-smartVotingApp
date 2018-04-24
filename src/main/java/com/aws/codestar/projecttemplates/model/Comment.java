@@ -7,6 +7,7 @@ public class Comment{
     private int parentId;
     private int id;
     private String content;
+    private String created;
 
     public int getUserId() {
         return userId;
@@ -48,5 +49,12 @@ public class Comment{
         this.content = content;
     }
 
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
 
 }

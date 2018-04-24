@@ -38,7 +38,7 @@ public class CommentDao {
     }
 
     public List<Comment> getCommentsByPollId(final int pollId) {
-        List<Comment> comments = jdbcTemplate.query("select * from comments where poll_id = ?", new Object[] {pollId}, new CommentRowMapper());
+        List<Comment> comments = jdbcTemplate.query("select * from comments where poll_id = ? order by created", new Object[] {pollId}, new CommentRowMapper());
         return comments;
     }
 

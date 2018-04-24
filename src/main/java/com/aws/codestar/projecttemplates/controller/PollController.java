@@ -18,9 +18,11 @@ import com.aws.codestar.projecttemplates.model.Category;
 import com.aws.codestar.projecttemplates.model.Poll;
 import com.aws.codestar.projecttemplates.model.PollOption;
 import com.aws.codestar.projecttemplates.model.User;
+import com.aws.codestar.projecttemplates.model.Comment;
 import com.aws.codestar.projecttemplates.service.CategoryService;
 import com.aws.codestar.projecttemplates.service.PollService;
 import com.aws.codestar.projecttemplates.service.UserService;
+import com.aws.codestar.projecttemplates.service.CommentService;
 
 @Controller
 public class PollController {
@@ -33,18 +35,18 @@ public class PollController {
 	
 	@Autowired
 	private CategoryService catService;
+
+	@Autowired
+	private CommentService commentService;
 	
 	@RequestMapping("/poll/{id}")
 	public String getPoll(@PathVariable int id, ModelMap pollModel) {
 		Poll poll = pollService.getPoll(id);
 		pollModel.addAttribute("poll", poll);
-		
-		//Example for retrieving all polls from database
-		//List<Poll> polls = pollService.getPolls();
-		
-		//Example for retrieving polls containing the word 'polo'... only title and description fields will be searched
-		//List<Poll> pollsWhere = pollService.getPollsWhere("polo");
-		
+
+		List<Comment> comments = commentService.getCommentsByPollId(id);
+		pollModel.addAttribute("listComments", comments);
+
 		return "poll";
 	}
 	
