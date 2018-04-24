@@ -4,14 +4,16 @@ public class Poll {
 	
 	private String title;
 	private String description;
+	private int pollId;
 	private int userId;
 	private int categoryId;
 	
 	public Poll() {}
 	
-	public Poll(String title, String description, int userId, int categoryId) {
+	public Poll(String title, String description, int pollId, int userId, int categoryId) {
 		this.title = title;
 		this.description = description;
+		this.pollId = pollId;
 		this.userId = userId;
 		this.categoryId = categoryId;
 	}
@@ -35,6 +37,14 @@ public class Poll {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public int getPollId() {
+		return pollId;
+	}
+
+	public void setPollId(int pollId) {
+		this.pollId = pollId;
 	}
 
 	public int getCategoryId() {

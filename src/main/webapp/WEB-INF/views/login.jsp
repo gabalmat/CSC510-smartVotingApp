@@ -46,7 +46,7 @@
 			    <span style="color:red;display:block;margin-bottom:15px;"><c:out value="${sessionScope.message}"/></span>
 			    <c:remove var="message" scope="session" />
 			  </c:if>
-			  <div><a href="">Register for a new account</a></div>
+			  <div><a href='<spring:url value="/createUser"/>'>Register for a new account</a></div>
 	        </div>
 	      </div>
 	    </div>

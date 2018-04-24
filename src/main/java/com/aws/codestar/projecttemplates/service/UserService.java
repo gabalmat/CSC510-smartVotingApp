@@ -15,4 +15,9 @@ public class UserService {
 	public User getUser(final String username) {
 		return userDao.getUser(username);
 	}
+
+    public void addUser(final User user) {
+        userDao.addUser(user);
+    }
+
 }

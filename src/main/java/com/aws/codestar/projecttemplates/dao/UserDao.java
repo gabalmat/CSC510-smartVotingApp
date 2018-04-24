@@ -19,4 +19,10 @@ public class UserDao {
 		User user = jdbcTemplate.queryForObject("select * from users where username = ?", new Object[] {username}, new UserRowMapper());
 		return user;
 	}
+
+    public void addUser(final User user) {
+        jdbcTemplate.update("insert into users (username, password, first_name, last_name, email, enabled) values(?,?,?,?,?,true)",
+                new Object[] { user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail() });
+    }
+
 }

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Some Poll...</title>
+	<title>User Created</title>
 	<meta name="description" content="" />
 	
     <spring:url value="/resources/gradients.css" var="gradientsCss" />
@@ -25,14 +25,18 @@
 	    
 	    <div class="message poll-content">
 	    	<div class="text">
-	    		<h2>${poll.title}</h2>
-				<c:if test="${not empty msg}">
-					${msg}
+				<c:if test="${not empty success}">
+                    <h2>${success}</h2>
+                    <h2>Please go back to the home page and login to proceed.</h2>
 				</c:if>
-				<table class="display-poll">
-					<tr>
-						<td>${poll.description}</td>
-				</table>
+                <c:if test="${not empty failure}">
+                    <h3>User not created, internal error:</h3>
+                    <h3>${failure}</h3>
+                </c:if>
+                <c:if test="${not empty userExists}">
+                    <h2>${userExists}</h2>
+                    <h3>${reason}</h3>
+                </c:if>
                 <p></p>
                 <br/>
                 <p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>
