@@ -4,6 +4,7 @@ public class PollOption {
 
 	private int pollId;
 	private String description;
+	private int id;
 	
 	public PollOption() {}
 	
@@ -26,5 +27,13 @@ public class PollOption {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

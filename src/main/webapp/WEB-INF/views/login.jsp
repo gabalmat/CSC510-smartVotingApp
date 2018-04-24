@@ -26,7 +26,7 @@
 	      <div class="message">
 	        <div class="text">
 	          <h1>SmartVote</h1> 
-	          <h3>Sign In</h3>
+	          <h3 class="margin-bottom-3">Sign In</h3>
 	          <form action='<spring:url value="/signin"/>' method="post">
 			    <table class="login-form">
 			      <tr>

@@ -18,11 +18,14 @@ import com.aws.codestar.projecttemplates.model.Category;
 import com.aws.codestar.projecttemplates.model.Poll;
 import com.aws.codestar.projecttemplates.model.PollOption;
 import com.aws.codestar.projecttemplates.model.User;
+import com.aws.codestar.projecttemplates.model.Vote;
 import com.aws.codestar.projecttemplates.model.Comment;
 import com.aws.codestar.projecttemplates.service.CategoryService;
 import com.aws.codestar.projecttemplates.service.PollService;
 import com.aws.codestar.projecttemplates.service.UserService;
+import com.aws.codestar.projecttemplates.service.VoteService;
 import com.aws.codestar.projecttemplates.service.CommentService;
+import com.aws.codestar.projecttemplates.service.PollOptionService;
 
 @Controller
 public class PollController {
@@ -39,6 +42,12 @@ public class PollController {
 	@Autowired
 	private CommentService commentService;
 	
+	@Autowired
+	private PollOptionService pollOptionService;
+	
+	@Autowired
+	private VoteService voteService;
+	
 	@RequestMapping("/poll/{id}")
 	public String getPoll(@PathVariable int id, ModelMap pollModel) {
 		Poll poll = pollService.getPoll(id);
@@ -46,6 +55,16 @@ public class PollController {
 
 		List<Comment> comments = commentService.getCommentsByPollId(id);
 		pollModel.addAttribute("listComments", comments);
+		
+		List<PollOption> pollOptions = pollOptionService.getPollOptionsByPoll(id);
+		pollModel.addAttribute("listPollOptions", pollOptions);
+		
+		//Check to see if user has already submitted a vote for the poll
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String userName = authentication.getName();
+		User user = userService.getUser(userName);
+		
+		pollModel.addAttribute("newVote", new Vote());
 
 		return "poll";
 	}
@@ -82,6 +101,22 @@ public class PollController {
 		pollOptionsModel.addAttribute("newOption", new PollOption());
 		
 		return "addPollOption";
+	}
+	
+	@RequestMapping(value = "/vote", method = RequestMethod.POST)
+	public String addVote(@ModelAttribute("newVote") Vote submittedVote, BindingResult result, ModelMap pollModel) {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String userName = authentication.getName();
+		User user = userService.getUser(userName);
+		
+		submittedVote.setUserId(user.getUserid());
+		voteService.addVote(submittedVote);
+		
+		pollModel.addAttribute("msg", "Vote submitted successfully");
+		pollModel.addAttribute("pollId", submittedVote.getPollId());
+		
+		return "redirect:/poll/{pollId}";
 	}
 
 }

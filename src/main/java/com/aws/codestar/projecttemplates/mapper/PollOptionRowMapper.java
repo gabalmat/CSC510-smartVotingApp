@@ -14,6 +14,7 @@ public class PollOptionRowMapper implements RowMapper<PollOption> {
 		PollOption pollOption = new PollOption();
 		pollOption.setDescription(rs.getString("description"));
 		pollOption.setPollId(rs.getInt("poll_id"));
+		pollOption.setId(rs.getInt("id"));
 		
 		return pollOption;
 	}
