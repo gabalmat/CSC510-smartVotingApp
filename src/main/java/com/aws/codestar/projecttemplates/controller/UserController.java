@@ -38,16 +38,12 @@ public class UserController {
             @RequestParam(value = "email", required = true) String email,
             ModelMap userModel) {
 
-        // TODO: validate email? password strength?
-        // https://stackoverflow.com/questions/37746428/java-spring-how-to-handle-missing-required-request-parameters
-        
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
         user.setLastName(lastName);
         user.setFirstName(firstName);
         user.setEmail(email);
-        // user.setUserid(userId);
 
         try {
             userService.addUser(user);

@@ -32,8 +32,7 @@ public class MyPollsController{
 
         SecurityContext context = SecurityContextHolder.getContext();
         String userName = context.getAuthentication().getName();
-        User user = userService.getUser(userName);
-        int id = user.getUserid();
+        int id = userService.getUserId(userName);
 
         List<Poll> results = pollService.getUserPolls(id);
         myPollsModel.addAttribute("myPollsCount", results.size());
