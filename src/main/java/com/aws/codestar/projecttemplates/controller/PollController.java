@@ -1,6 +1,7 @@
 package com.aws.codestar.projecttemplates.controller;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.aws.codestar.projecttemplates.util.TreeNode;
 import com.aws.codestar.projecttemplates.model.Category;
 import com.aws.codestar.projecttemplates.model.Poll;
 import com.aws.codestar.projecttemplates.model.PollOption;
@@ -45,7 +47,11 @@ public class PollController {
 		pollModel.addAttribute("poll", poll);
 
 		List<Comment> comments = commentService.getCommentsByPollId(id);
+
+		List<TreeNode<Comment>> commentsTree = makeCommentsTree(comments);
+		
 		pollModel.addAttribute("listComments", comments);
+		pollModel.addAttribute("treeComments", commentsTree);
 
 		return "poll";
 	}
@@ -82,6 +88,38 @@ public class PollController {
 		pollOptionsModel.addAttribute("newOption", new PollOption());
 		
 		return "addPollOption";
+	}
+
+	public List<TreeNode<Comment>> makeCommentsTree(List<Comment> comments){
+
+	    List<TreeNode<Comment>> commentsTree = new ArrayList<TreeNode<Comment>>();
+	    List<TreeNode<Comment>> tempTree = new ArrayList<TreeNode<Comment>>();
+
+	    for (Comment comment:comments){
+	    	TreeNode<Comment> node = new TreeNode<Comment>(comment);
+	        tempTree.add(node);
+	    }
+
+	    for (TreeNode<Comment> node:tempTree){
+	        if (node.getData().getParentId() == 0){
+	            commentsTree.add(node);
+	        }
+	        else {
+	            commentsTree = addChildToParent(commentsTree, node);
+	        }
+	    }
+	    return commentsTree;
+	}
+
+	private List<TreeNode<Comment>> addChildToParent(List<TreeNode<Comment>> commentsTree, TreeNode<Comment> node){
+	    // Since a comment can only have one parent, we can break once we find the parent
+	    for (TreeNode<Comment> parentNode:commentsTree){
+	        if (parentNode.getData().getId() == node.getData().getParentId()){
+	            parentNode.addChild(node);
+	            break;
+	        }
+	    }
+	    return commentsTree;
 	}
 
 }
