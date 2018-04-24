@@ -56,25 +56,44 @@
 	                </c:forEach>             
 	            </table>
 	            
-	            <table width="100%" class="display-poll vote-options-tbl">
-	            	<tr>
-                    	<td><h3>Voting Options:</h3></td>
-                    </tr>
-	            </table>
-	            
-	            <form:form method="POST" action="${pageContext.request.contextPath}/vote" modelAttribute="newVote">
-	            	<table width="100%" class="display-poll login-form">
-	                    <c:forEach var="option" items="${listPollOptions}" varStatus="status">
-	                    	<tr>
-	                    		<td><form:radiobutton path="pollOptionId" value="${option.id}" label="${option.description}"></form:radiobutton></td>
-	                    		<form:hidden path="pollId" value="${option.pollId}"></form:hidden>
-	                    	</tr>
-	                    </c:forEach>
-	                    <tr>
-	                    	<td><button type="submit">SUBMIT VOTE</button></td>
-	                    </tr>
-		            </table>
-	            </form:form>
+	            <c:choose>
+	            	<c:when test="${not empty userPollOption}">
+		            	<table width="100%" class="display-poll vote-options-tbl">
+			            	<tr>
+		                    	<td><h3>Submitted Vote:</h3></td>
+		                    </tr>
+			            </table>
+		            	<table width="100%" class="display-poll">
+		            		<tr>
+		            			<td>
+		            				<input type="radio" checked />
+		            				<label>${userPollOption.description}</label>
+		            			</td>
+		            		</tr>
+		            	</table>
+		            </c:when>
+		            <c:otherwise>
+		            	<table width="100%" class="display-poll vote-options-tbl">
+			            	<tr>
+		                    	<td><h3>Voting Options:</h3></td>
+		                    </tr>
+			            </table>
+			            
+			        	<form:form method="POST" action="${pageContext.request.contextPath}/vote" modelAttribute="newVote">
+			            	<table width="100%" class="display-poll login-form">
+			                    <c:forEach var="option" items="${listPollOptions}" varStatus="status">
+			                    	<tr>
+			                    		<td><form:radiobutton path="pollOptionId" value="${option.id}" label="${option.description}"></form:radiobutton></td>
+			                    		<form:hidden path="pollId" value="${option.pollId}"></form:hidden>
+			                    	</tr>
+			                    </c:forEach>
+			                    <tr>
+			                    	<td><button type="submit">SUBMIT VOTE</button></td>
+			                    </tr>
+				            </table>
+			            </form:form>
+		            </c:otherwise>
+	            </c:choose>
 	            
                 <p></p>
                 <br/>

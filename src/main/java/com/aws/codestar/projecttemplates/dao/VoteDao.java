@@ -36,5 +36,11 @@ public class VoteDao {
         List<Vote> votes = jdbcTemplate.query("select * from votes where poll_id = ?", new Object[] {pollId}, new VoteRowMapper());
         return votes;
     }
+    
+    public List<Vote> getVotesByPollIdAndUserId(final int pollId, final int userId) {
+    	List<Vote> votes = jdbcTemplate.query("select * from votes where poll_id = ? and user_id = ?",
+    			new Object[] {pollId, userId}, new VoteRowMapper());
+    	return votes;
+    }
 
 }

@@ -64,7 +64,13 @@ public class PollController {
 		String userName = authentication.getName();
 		User user = userService.getUser(userName);
 		
-		pollModel.addAttribute("newVote", new Vote());
+		List<Vote> userVotes = voteService.getVotesByPollIdAndUserId(id, user.getUserid());
+		if (userVotes.size() > 0) {
+			PollOption userPollOption = pollOptionService.getPollOption(userVotes.get(0).getPollOptionId());
+			pollModel.addAttribute("userPollOption", userPollOption);
+		} else {
+			pollModel.addAttribute("newVote", new Vote());
+		}
 
 		return "poll";
 	}
