@@ -52,6 +52,10 @@ public class PollController {
 	public String getPoll(@PathVariable int id, ModelMap pollModel) {
 		Poll poll = pollService.getPoll(id);
 		pollModel.addAttribute("poll", poll);
+		
+		// Get the poll category
+		Category cat = catService.getCategory(poll.getCategoryId());
+		pollModel.addAttribute("category", cat);
 
 		List<Comment> comments = commentService.getCommentsByPollId(id);
 		pollModel.addAttribute("listComments", comments);

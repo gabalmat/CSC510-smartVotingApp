@@ -33,10 +33,13 @@
                     <p><b><a href='<spring:url value="/poll/${poll.pollId}"/>'>Poll #${poll.pollId}</a></b></p>
 				</c:if>
 				<table width="100%" class="display-poll">
+					<tr class="line-height">
+                    	<td><b>Category: </b> ${category.name} - ${category.description}</td>
+                    </tr>
 					<tr>
 						<td>${poll.description}</td>
                     </tr>
-                    <tr>
+                    <tr class="line-height">
                     	<td><h3>Discussion:</h3></td>
                     </tr>
 				</table>

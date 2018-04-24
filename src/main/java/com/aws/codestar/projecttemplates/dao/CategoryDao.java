@@ -17,6 +17,11 @@ public class CategoryDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	public Category getCategory(final int id) {
+		Category cat = jdbcTemplate.queryForObject("select * from categories where id = ?", new Object[] {id}, new CategoryRowMapper());
+		return cat;
+	}
+	
 	public Category getCategoryByName(final String name) {
 		Category cat = jdbcTemplate.queryForObject("select * from categories where name = ?", new Object[] {name}, new CategoryRowMapper());
 		return cat;
