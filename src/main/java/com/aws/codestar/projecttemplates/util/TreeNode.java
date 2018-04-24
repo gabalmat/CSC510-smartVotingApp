@@ -7,7 +7,7 @@ import com.aws.codestar.projecttemplates.model.Comment;
 public class TreeNode<T>{
 
     private T data = null;
-    private List<TreeNode> children = new ArrayList<>();
+    private List<TreeNode> children = new ArrayList<TreeNode>();
     private TreeNode parent = null;
 
     public TreeNode(T data) {

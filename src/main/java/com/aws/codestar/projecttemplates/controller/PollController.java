@@ -48,10 +48,12 @@ public class PollController {
 
 		List<Comment> comments = commentService.getCommentsByPollId(id);
 
-		List<TreeNode<Comment>> commentsTree = makeCommentsTree(comments);
+		List<TreeNode> commentsTree = makeCommentsTree(comments);
 		
 		pollModel.addAttribute("listComments", comments);
 		pollModel.addAttribute("treeComments", commentsTree);
+		List<String> lis = getFormattedTrees(commentsTree);
+		pollModel.addAttribute("lis", lis);
 
 		return "poll";
 	}
@@ -90,36 +92,57 @@ public class PollController {
 		return "addPollOption";
 	}
 
-	public List<TreeNode<Comment>> makeCommentsTree(List<Comment> comments){
+	// This function is very, very inefficient. However, it works.
+	// If performsnce becomes an issue, this can be optimized.
+	public List<TreeNode> makeCommentsTree(List<Comment> comments){
 
-	    List<TreeNode<Comment>> commentsTree = new ArrayList<TreeNode<Comment>>();
-	    List<TreeNode<Comment>> tempTree = new ArrayList<TreeNode<Comment>>();
+	    List<TreeNode> commentsTree = new ArrayList<TreeNode>();
+	    List<TreeNode> tempTree = new ArrayList<TreeNode>();
 
 	    for (Comment comment:comments){
 	    	TreeNode<Comment> node = new TreeNode<Comment>(comment);
 	        tempTree.add(node);
 	    }
 
+	    for (TreeNode<Comment> node1:tempTree){
+	        for (TreeNode<Comment> node2:tempTree){
+	            if (node1.getData().getId() == node2.getData().getParentId()){
+	                node1.addChild(node2);
+	            }
+	        }
+	    }
+
 	    for (TreeNode<Comment> node:tempTree){
 	        if (node.getData().getParentId() == 0){
 	            commentsTree.add(node);
 	        }
-	        else {
-	            commentsTree = addChildToParent(commentsTree, node);
-	        }
 	    }
+	    
 	    return commentsTree;
 	}
 
-	private List<TreeNode<Comment>> addChildToParent(List<TreeNode<Comment>> commentsTree, TreeNode<Comment> node){
-	    // Since a comment can only have one parent, we can break once we find the parent
-	    for (TreeNode<Comment> parentNode:commentsTree){
-	        if (parentNode.getData().getId() == node.getData().getParentId()){
-	            parentNode.addChild(node);
-	            break;
-	        }
-	    }
-	    return commentsTree;
+	// This should ideally be done in javascript
+	private String generateHTML(TreeNode<Comment> node){
+		String html = "";
+		html += "<ul><li><div>" + node.getData().getContent() + "</div></li>";
+		if (node.getChildren().size() == 0){
+			return html;
+		}
+		for (TreeNode<Comment> child:node.getChildren()) {
+		        html += generateHTML(child);
+		        html += "</ul>";
+		}
+
+		return html;
+	}
+
+	private List<String> getFormattedTrees(List<TreeNode> commentsTree){
+		List<String> lis = new ArrayList<String>();
+		for (TreeNode<Comment> node:commentsTree){
+			String html = generateHTML(node)+"</ul>";
+			lis.add(html);
+		}
+		return lis;
 	}
 
 }

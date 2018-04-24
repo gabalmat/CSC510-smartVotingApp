@@ -31,34 +31,16 @@
                     <br/>
                     <p><b><a href='<spring:url value="/poll/${poll.pollId}"/>'>Poll #${poll.pollId}</a></b></p>
 				</c:if>
-				<table class="display-poll">
-					<tr>
-						<td>${poll.description}</td>
-                    </tr>
 
-                    <h3>Discussion:</h3>
-                    <table border="1">
-                        <th>No</th>
-                        <th>Username</th>
-                        <th>Content</th>
-                        <th>Parent</th>
-                        <th>Time Posted</th>
-                        <c:forEach var="comment" items="${listComments}" varStatus="status">
-                        <tr>
-                            <td>${status.index + 1}</td>
-                            <td>${comment.userId}</td>
-                            <th>${comment.content}</th>
-                            <th>${comment.parentId}</th>
-                            <th>${comment.created}</th>
-                        </tr>
-                        </c:forEach>
-                    </table>
-
-				</table>
                 <p></p>
                 <br/>
                 <p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>
 	    	</div>
+
+        <c:forEach var="singleTree" items="${lis}" varStatus="status">
+            ${singleTree}
+        </c:forEach>
+        
 	    </div>
 	</div>
 	
