@@ -282,5 +282,15 @@ keyframes dash {to { stroke-dashoffset:0;
 }
 
 .cat-selection {
-	margin-top: 20px;
+	line-height: 50px;
+}
+
+.cat-dropdown {
+	padding: 6px;
+	border: 1.5px solid gray;
+	width: 230px;
+}
+
+.poll-options {
+	line-height: 100px;
 }

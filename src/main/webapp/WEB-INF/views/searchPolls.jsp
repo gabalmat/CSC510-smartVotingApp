@@ -21,7 +21,7 @@
         <nav class="website-nav"></nav>
       </header>
 
-      <div class="message">
+      <div class="message poll-content">
         <div class="text">
           <h2>Type the search criteria below to search for a poll:</h2>
 

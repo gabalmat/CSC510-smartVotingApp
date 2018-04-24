@@ -13,7 +13,7 @@ public class Poll {
 		this.title = title;
 		this.description = description;
 		this.userId = userId;
-		this.setCategoryId(categoryId);
+		this.categoryId = categoryId;
 	}
 	
 	public String getTitle() {

@@ -5,6 +5,7 @@ public class Category {
 	private int userId;
 	private String name;
 	private String description;
+	private int id;
 	
 	public Category() {}
 	
@@ -36,5 +37,13 @@ public class Category {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

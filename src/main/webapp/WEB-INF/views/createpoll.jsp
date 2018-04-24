@@ -34,10 +34,10 @@
               <td class="first-td"><form:label path="description">Description: </form:label></td>
               <td><form:textarea path="description" rows="7"></form:textarea></td>
             </tr>
-            <tr>
-              <td class="cat-selection first-td"><form:label path="categoryId">Category: </form:label></td>
-              <td class="cat-selection">
-              	<form:select path="categoryId">
+            <tr class="cat-selection">
+              <td class="first-td"><form:label path="categoryId">Category: </form:label></td>
+              <td>
+              	<form:select path="categoryId" class="cat-dropdown">
               		<form:options items="${categoryList}" itemValue="id" itemLabel="name" />
               	</form:select>
               </td>

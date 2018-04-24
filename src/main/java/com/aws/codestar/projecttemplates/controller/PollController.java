@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.aws.codestar.projecttemplates.model.Category;
 import com.aws.codestar.projecttemplates.model.Poll;
+import com.aws.codestar.projecttemplates.model.PollOption;
 import com.aws.codestar.projecttemplates.model.User;
 import com.aws.codestar.projecttemplates.service.CategoryService;
 import com.aws.codestar.projecttemplates.service.PollService;
@@ -54,6 +55,8 @@ public class PollController {
 		List<Category> categories = catService.getCategories();
 		pollModel.addAttribute("categoryList", categories);
 		
+		pollModel.addAttribute("newPoll", new Poll());
+		
 		return "createpoll";
 	}
 	
@@ -70,6 +73,13 @@ public class PollController {
 		pollModel.addAttribute("msg", "Poll added successfully");
 		pollModel.addAttribute("poll", submittedPoll);
 		return "poll";
+	}
+	
+	@RequestMapping(value = "/addPollOptions", method = RequestMethod.POST)
+	public String addPollOptions(ModelMap pollOptionsModel) {
+		pollOptionsModel.addAttribute("newOption", new PollOption());
+		
+		return "addPollOption";
 	}
 
 }
