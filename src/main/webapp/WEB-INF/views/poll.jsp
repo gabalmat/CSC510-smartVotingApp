@@ -39,9 +39,31 @@
 					<tr>
 						<td>${poll.description}</td>
                     </tr>
+
                     <tr class="line-height">
                     	<td><h3>Discussion:</h3></td>
                     </tr>
+
+
+                    <h3>Discussion:</h3>
+                    <table border="1">
+                        <th>No</th>
+                        <th>Username</th>
+                        <th>Content</th>
+                        <th>Parent</th>
+                        <th>Time Posted</th>
+                        <c:forEach var="comment" items="${listComments}" varStatus="status">
+                        <tr>
+                            <td>${status.index + 1}</td>
+                            <td>${comment.userId}</td>
+                            <th>${comment.content}</th>
+                            <th>${comment.parentId}</th>
+                            <th>${comment.created}</th>
+                        </tr>
+                        </c:forEach>
+                    </table>
+
+
 				</table>
 				
 				<table width="100%" border="1">

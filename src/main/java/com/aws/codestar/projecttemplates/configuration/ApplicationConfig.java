@@ -12,6 +12,7 @@ import com.aws.codestar.projecttemplates.controller.UserController;
 import com.aws.codestar.projecttemplates.controller.SmartVotingController;
 import com.aws.codestar.projecttemplates.controller.SearchController;
 import com.aws.codestar.projecttemplates.controller.MyPollsController;
+import com.aws.codestar.projecttemplates.controller.CategoryController;
 
 
 /**
@@ -41,6 +42,11 @@ public class ApplicationConfig {
     @Bean
     public UserController createUser() {
         return new UserController();
+    }
+
+    @Bean
+    public CategoryController createCategory() {
+        return new CategoryController();
     }
 
     @Bean
