@@ -38,8 +38,6 @@
           <br/>
           <p><b><a href='<spring:url value="/createCategory"/>'>Create cat</a></b></p>
           <br/>
-          <p><b><a href='<spring:url value="/createUser"/>'>create user</a></b></p>
-          <br/>
 	  	    <p><b><a href='<spring:url value="/signout"/>'>Logout</a></b></p>
         </div>
       </div>

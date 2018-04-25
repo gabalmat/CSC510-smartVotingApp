@@ -30,6 +30,10 @@ public class PollService {
 		return pollDao.getPollsWhere(whereClause);
 	}
 
+	public List<Poll> getPollsWhereWithCat(final String whereClause, final int catId) {
+		return pollDao.getPollsWhereWithCat(whereClause, catId);
+	}
+
 	public List<Poll> getUserPolls(final int id) {
 		return pollDao.getUserPolls(id);
 	}

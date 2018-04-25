@@ -9,6 +9,18 @@ public class Comment{
     private String content;
     private String created;
 
+    public Comment() {}
+
+    public Comment(int userId, int pollId, int parentId, int id, String content, String created) {
+        this.setUserId(userId);
+        this.setPollId(pollId);
+        this.setParentId(parentId);
+        this.setId(id);
+        this.setContent(content);
+        this.setCreated(created);
+        
+    }
+
     public int getUserId() {
         return userId;
     }

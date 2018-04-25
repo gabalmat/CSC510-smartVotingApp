@@ -7,6 +7,15 @@ public class Vote{
     private int pollOptionId;
     private int id;
 
+    public Vote() {}
+    
+    public Vote(int userId, int pollId, int pollOptionId, int id) {
+        this.setPollId(pollId);
+        this.setPollOptionId(pollOptionId);
+        this.setUserId(userId);
+        this.setId(id);
+    }
+
     public int getUserId() {
         return userId;
     }

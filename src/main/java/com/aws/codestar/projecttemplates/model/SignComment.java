@@ -6,6 +6,14 @@ public class SignComment{
     private int commentId;
     private int id;
 
+    public SignComment() {}
+    
+    public SignComment(int userId, int commentId, int id) {
+        this.setId(id);
+        this.setCommentId(commentId);
+        this.setUserId(userId);
+    }
+
     public int getUserId() {
         return userId;
     }

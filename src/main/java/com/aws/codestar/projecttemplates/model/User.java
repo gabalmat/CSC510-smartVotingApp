@@ -11,6 +11,15 @@ public class User {
 	
 	public User() {}
 
+	public User(String email, String firstName, String lastName, String password, String username, int userid) {
+		this.setEmail(email);
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
+		this.setPassword(password);
+		this.setUsername(username);
+		this.setUserid(userid);
+	}
+
 	public String getEmail() {
 		return email;
 	}
