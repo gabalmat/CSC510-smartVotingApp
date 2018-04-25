@@ -86,14 +86,14 @@
                 </tr>
                 <table border="1">
                     <th>No</th>
-                    <th>Username</th>
+                    <th>User</th>
                     <th>Content</th>
                     <th>Parent</th>
                     <th>Time Posted</th>
                     <c:forEach var="comment" items="${listComments}" varStatus="status">
                     <tr>
                         <td>${status.index + 1}</td>
-                        <td>${comment.userId}</td>
+                        <td><a href='<spring:url value="/profile/${comment.username}"/>'>${comment.username}</a></td>
                         <th>${comment.content}</th>
                         <th>${comment.parentId}</th>
                         <th>${comment.created}</th>

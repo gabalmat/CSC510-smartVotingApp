@@ -8,6 +8,7 @@ public class Comment{
     private int id;
     private String content;
     private String created;
+    private String username;
 
     public Comment() {}
 
@@ -67,6 +68,14 @@ public class Comment{
 
     public void setCreated(String created) {
         this.created = created;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 }

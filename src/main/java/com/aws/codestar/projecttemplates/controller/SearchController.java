@@ -16,6 +16,8 @@ import com.aws.codestar.projecttemplates.model.Poll;
 import com.aws.codestar.projecttemplates.service.PollService;
 import com.aws.codestar.projecttemplates.model.Category;
 import com.aws.codestar.projecttemplates.service.CategoryService;
+import com.aws.codestar.projecttemplates.model.User;
+import com.aws.codestar.projecttemplates.service.UserService;
 
 
 @Controller
@@ -26,6 +28,9 @@ public class SearchController{
 
     @Autowired
     private CategoryService catService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/searchPolls", method = RequestMethod.GET)
     public String searchPolls(ModelMap searchModel) {
@@ -50,12 +55,23 @@ public class SearchController{
         } else {
             results = pollService.getPollsWhereWithCat(crit, cat.getId());
         }
+
+        results = addUsername(results, userService);
+
         resultsModel.addAttribute("criteriaChoice", crit);
         resultsModel.addAttribute("categoryChoice", catName);
         resultsModel.addAttribute("searchCount", results.size());
         resultsModel.addAttribute("listPolls", results);
 
         return "searchResults";
+    }
+
+    public List<Poll> addUsername(List<Poll> polls, UserService userService){
+        for (Poll poll:polls){
+            String username = userService.getUser(poll.getUserId()).getUsername();
+            poll.setUsername(username);
+        }
+        return polls;
     }
 
 }

@@ -63,6 +63,8 @@ public class PollController {
 		List<TreeNode> commentsTree = makeCommentsTree(comments);
 		List<String> htmlTree = getFormattedTrees(commentsTree);
 		
+		comments = addUsername(comments, userService);
+
 		pollModel.addAttribute("listComments", comments);
 		pollModel.addAttribute("treeComments", commentsTree);
 		pollModel.addAttribute("htmlTree", htmlTree);
@@ -134,6 +136,14 @@ public class PollController {
 		pollModel.addAttribute("pollId", submittedVote.getPollId());
 		
 		return "redirect:/poll/{pollId}";
+	}
+
+	public List<Comment> addUsername(List<Comment> comments, UserService userService){
+		for (Comment comment:comments){
+			String username = userService.getUser(comment.getUserId()).getUsername();
+			comment.setUsername(username);
+		}
+		return comments;
 	}
 
 	// This function is very, very inefficient. However, it works.

@@ -8,6 +8,7 @@ public class User {
 	private String password;
 	private String username;
 	private int userid;
+	private String created;
 	
 	public User() {}
 
@@ -66,5 +67,13 @@ public class User {
 
 	public void setUserid(int userid) {
 		this.userid = userid;
+	}
+
+	public String getCreated() {
+		return created;
+	}
+
+	public void setCreated(String created) {
+		this.created = created;
 	}
 }

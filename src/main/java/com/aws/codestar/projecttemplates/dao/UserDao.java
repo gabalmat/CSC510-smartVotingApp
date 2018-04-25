@@ -20,6 +20,11 @@ public class UserDao {
 		return user;
 	}
 
+    public User getUser(final int id) {
+        User user = jdbcTemplate.queryForObject("select * from users where id = ?", new Object[] {id}, new UserRowMapper());
+        return user;
+    }
+
     public int getUserId(final String username) {
         int userId = jdbcTemplate.queryForObject("select id from users where username = ?", Integer.class, username);
         return userId;
