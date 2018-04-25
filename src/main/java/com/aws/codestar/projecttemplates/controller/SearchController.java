@@ -1,6 +1,7 @@
 package com.aws.codestar.projecttemplates.controller;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,10 +29,9 @@ public class SearchController{
 
     @RequestMapping(value = "/searchPolls", method = RequestMethod.GET)
     public String searchPolls(ModelMap searchModel) {
+        List<Category> categories = catService.getCategories();
         searchModel.addAttribute("criteria", new String());
         searchModel.addAttribute("category", new Category());
-
-        List<Category> categories = catService.getCategories();
         searchModel.addAttribute("categoryList", categories);
 
         return "searchPolls";
@@ -39,13 +39,19 @@ public class SearchController{
 
     @RequestMapping(value = "/searchResults", method = RequestMethod.POST)
     public String searchResults(@RequestParam(value = "criteria", required = true) String criteria,
-        @ModelAttribute("category") Category cat,
-        BindingResult result, ModelMap resultsModel) {
+        @ModelAttribute("category") Category cat, BindingResult result, ModelMap resultsModel) {
 
         String crit = criteria.toLowerCase();
-        resultsModel.addAttribute("criteria", crit);
-        
-        List<Poll> results = pollService.getPollsWhereWithCat(crit, cat.getId());
+        String catName = catService.getCategory(cat.getId()).getName();
+
+        List<Poll> results = new ArrayList<Poll>();
+        if (cat.getId() == 5){
+            results = pollService.getPollsWhere(crit);
+        } else {
+            results = pollService.getPollsWhereWithCat(crit, cat.getId());
+        }
+        resultsModel.addAttribute("criteriaChoice", crit);
+        resultsModel.addAttribute("categoryChoice", catName);
         resultsModel.addAttribute("searchCount", results.size());
         resultsModel.addAttribute("listPolls", results);
 

@@ -24,7 +24,8 @@
 
       <div class="message poll-content">
         <div class="text">
-          <h3>Search criteria: ${criteria}.</h3>
+          <h3>Search criteria: ${criteriaChoice}.</h3>
+          <h3>Search criteria: ${categoryChoice}.</h3>
           <h3>Found ${searchCount} results:</h3>
 
           <table border="1">
@@ -41,6 +42,9 @@
               </tr>
               </c:forEach>             
           </table>
+          <p></p>
+          <br/>
+          <p><b><a href='<spring:url value="/searchPolls"/>'>Another Search</a></b></p>
           <p></p>
           <br/>
           <p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>

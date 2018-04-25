@@ -33,7 +33,7 @@ public class CategoryDao {
 	}
 	
 	public List<Category> getCategories() {
-		List<Category> cats = jdbcTemplate.query("select * from categories", new CategoryRowMapper());
+		List<Category> cats = jdbcTemplate.query("select * from categories order by name", new CategoryRowMapper());
 		return cats;
 	}
 }
