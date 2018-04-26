@@ -91,6 +91,7 @@ artifacts:
     - 'ROOT/WEB-INF/views/addPollOptions.jsp'
     - 'ROOT/WEB-INF/views/categoryCreateResult.jsp'
     - 'ROOT/WEB-INF/views/createCategory.jsp'
+    - 'ROOT/WEB-INF/views/createComment.jsp'
     - 'ROOT/WEB-INF/views/createpoll.jsp'
     - 'ROOT/WEB-INF/views/createUser.jsp'
     - 'ROOT/WEB-INF/views/index.jsp'
