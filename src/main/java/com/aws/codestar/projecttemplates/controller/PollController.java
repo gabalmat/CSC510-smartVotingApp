@@ -51,6 +51,8 @@ public class PollController {
 	
 	@Autowired
 	private VoteService voteService;
+
+	private int myPollId;
 	
 	@RequestMapping("/poll/{id}")
 	public String getPoll(@PathVariable int id, ModelMap pollModel) {
@@ -64,6 +66,7 @@ public class PollController {
 		List<Comment> comments = commentService.getCommentsByPollId(id);
 		comments = addUsername(comments, userService);
 		List<TreeNode> commentsTree = makeCommentsTree(comments);
+		myPollId = id;
 		List<String> htmlTree = getFormattedTrees(commentsTree);
 		
 		pollModel.addAttribute("listComments", comments);
@@ -140,21 +143,20 @@ public class PollController {
 	}
 
 	@RequestMapping(value = "/createComment")
-	public String createComment(
-			// @RequestParam(value = "pollId", required = true) int pollId,
-	        // @RequestParam(value = "parentId", required = true) int parentId,
-	        // ModelMap commentModel
+	public String createComment(@RequestParam(value = "pollId", required = true) int pollId,
+	        @RequestParam(value = "parentId", required = true) int parentId,
+	        ModelMap commentModel
 	        ) 
 	{
 
-		// commentModel.addAttribute("pollId", pollId);
-		// commentModel.addAttribute("parentId", parentId);
+		commentModel.addAttribute("pollId", pollId);
+		commentModel.addAttribute("parentId", parentId);
 
 	    return "createComment";
 	}
 
 	@RequestMapping(value = "/commentCreateResult", method = RequestMethod.POST)
-	public String createComment(@RequestParam(value = "pollId", required = true) int pollId,
+	public String addComment(@RequestParam(value = "pollId", required = true) int pollId,
 	        @RequestParam(value = "parentId", required = true) int parentId,
 	        @RequestParam(value = "content", required = true) String content,
 	        ModelMap commentModel) {
@@ -242,7 +244,7 @@ public class PollController {
 	private String formatContent(Comment comment){
 		String html = "<table border="+1+">";
 		html += "<tr><th>User</th><th>Content</th><th>Time Posted</th><th>Add Comment</th></tr>";
-		html += "<tr><th><a href='/profile/"+comment.getUsername()+"'>"+comment.getUsername()+"</a></th><td>"+comment.getContent()+"</td><td>"+comment.getCreated()+"</td><td><a href='/createComment'>Add Comment</a></td></tr>";
+		html += "<tr><th><a href='/profile/"+comment.getUsername()+"'>"+comment.getUsername()+"</a></th><td>"+comment.getContent()+"</td><td>"+comment.getCreated()+"</td><td><a href='/createComment?parentId="+comment.getId()+"&pollId="+myPollId+"'>Add Comment</a></td></tr>";
 		html += "</table>";
 		return html;
 	}

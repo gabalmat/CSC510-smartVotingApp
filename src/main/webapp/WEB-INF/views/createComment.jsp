@@ -34,7 +34,7 @@
               <td><input name="pollId" value="${pollId}" type="text"/></td>
             </tr>
             <tr>
-              <td class="first-td"><label>* Comment Content: </label></td>
+              <td class="first-td"><label>* Comment parentId: </label></td>
               <td><input name="parentId" value="${parentId}" type="text"/></td>
             </tr>
             <tr>
