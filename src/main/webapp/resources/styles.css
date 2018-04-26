@@ -66,7 +66,7 @@ footer .footer-contents {
 	padding: 5rem;
 }
 
-.website-nav ul {
+/*.website-nav ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -81,7 +81,7 @@ footer .footer-contents {
 .website-nav ul li a {
 	color: white;
 	text-decoration: none;
-}
+}*/
 
 .home-link {
 	font-weight: bold;
@@ -108,6 +108,57 @@ footer .footer-contents {
 	float: left;
 	text-align: center;
 }
+
+.tree {
+	text-align: left;
+	font-size: 16pt;
+	
+}
+
+ul {
+  margin: 0px 0px 0px 20px;
+  list-style: none;
+  line-height: 2em;
+  font-family: Arial;
+}
+ul li {
+  font-size: 16px;
+  position: relative;
+}
+ul li:before {
+  position: absolute;
+  left: -15px;
+  top: 0px;
+  content: '';
+  display: block;
+  border-left: 1px solid #ddd;
+  height: 1em;
+  border-bottom: 1px solid #ddd;
+  width: 10px;
+}
+ul li:after {
+  position: absolute;
+  left: -15px;
+  bottom: -7px;
+  content: '';
+  display: block;
+  border-left: 1px solid #ddd;
+  height: 100%;
+}
+ul li.root {
+  margin: 0px 0px 0px -20px;
+}
+ul li.root:before {
+  display: none;
+}
+ul li.root:after {
+  display: none;
+}
+ul li:last-child:after {
+  display: none;
+}
+
+
 
 .message:after, .website-nav:after {
 	content: " ";
@@ -156,7 +207,7 @@ keyframes dash {to { stroke-dashoffset:0;
 @media ( min-height : 500px) and (min-width: 700px) {
 	.message {
 		padding: 0;
-		width: 50%;
+		width: 70%;
 		left: calc(50vw - 23rem);
 /* 		top: calc(15vh - 5rem); */
 	}
@@ -176,7 +227,7 @@ keyframes dash {to { stroke-dashoffset:0;
 	}
 	.poll-content {
 		padding: 0;
-		width: 50%;
+		width: 70%;
 		left: calc(50vw - 50rem);
 	}
 }

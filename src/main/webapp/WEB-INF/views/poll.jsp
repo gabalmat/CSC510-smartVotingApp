@@ -93,50 +93,21 @@
 			            </form:form>
 		            </c:otherwise>
 	            </c:choose>
-	            
-<!-- 	            <tr class="line-height"> -->
-<!--                         <td><h3>Discussion:</h3></td> -->
-<!--                 </tr> -->
-<!--                 <tr class="line-height"> -->
-<%--                         <td><p><a href='/createComment?parentId=0&pollId=${myPollId}'>Create Root Comment</a><p></td> --%>
-<!--                 </tr> -->
-<%--     	        <c:forEach var="singleTree" items="${htmlTree}" varStatus="status"> --%>
-<%--                     ${singleTree} --%>
-<%--                 </c:forEach>    --%>
-	           
-<!--                 <tr class="line-height"> -->
-<!--                         <td><h3>Discussion Table:</h3></td> -->
-<!--                 </tr> -->
-<!--                 <table border="1"> -->
-<!--                     <th>No</th> -->
-<!--                     <th>Username</th> -->
-<!--                     <th>Content</th> -->
-<!--                     <th>Parent</th> -->
-<!--                     <th>Time Posted</th> -->
-<%--                     <c:forEach var="comment" items="${listComments}" varStatus="status"> --%>
-<!--                     <tr> -->
-<%--                         <td>${status.index + 1}</td> --%>
-<%--                         <td>${comment.userId}</td> --%>
-<%--                         <th>${comment.content}</th> --%>
-<%--                         <th>${comment.parentId}</th> --%>
-<%--                         <th>${comment.created}</th> --%>
-<!--                     </tr> -->
-<%--                     </c:forEach> --%>
-<!--                 </table> -->
-
-                <div style="text-align:center">
-                	<table class="discussion-tree">
-	                	<tr>
-		                    <td><h3><b>Discussion Tree:</b></h3></td>
-		                </tr>
-	                	<tr>
-	                		<td><div id="commentTree">${htmlTree}</div></td>
-	                	</tr>
-	                </table>
+                <div>
+                    <tr class="line-height">
+                            <td><h3>Discussion:</h3></td>
+                    </tr>
+                    <tr class="line-height">
+                            <td><p><a href='/createComment?parentId=0&pollId=${myPollId}'>Create Root Comment</a></p></td>
+                    </tr>
+                    <br/>
+                    <c:forEach var="singleTree" items="${htmlTree}" varStatus="status">
+                        ${singleTree}
+                    </c:forEach>   
                 </div>
 	    	</div>
 			
-            <p></p>
+            <br/>
             <br/>
             <p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>
         
@@ -144,12 +115,5 @@
 	</div>
 	
 	<script src="${setBackgroundJs}"></script>
-	<script type="text/javascript">
-		//once the DOM has been created, initialize the tree
-		$(function() {
-			$.jstree.defaults.core.themes.variant = "large";
-			$('#commentTree').jstree();
-		});
-	</script>
 </body>
 </html>

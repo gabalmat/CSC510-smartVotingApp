@@ -67,7 +67,7 @@ public class PollController {
 		comments = addUsername(comments, userService);
 		List<TreeNode> commentsTree = makeCommentsTree(comments);
 		myPollId = id;
-		String htmlTree = getFormattedTrees(commentsTree);
+		List<String> htmlTree = getFormattedTrees(commentsTree);
 		
 		pollModel.addAttribute("listComments", comments);
 		pollModel.addAttribute("treeComments", commentsTree);
@@ -227,73 +227,56 @@ public class PollController {
 	    return commentsTree;
 	}
 	
-	private String generateHTML(List<TreeNode> nodeArray){
-		String html = "<ul>";
-		for (int i = 0; i <nodeArray.size(); i++) {
-			TreeNode<Comment> node = nodeArray.get(i);
-			html += "<li class='jstree-open'>" + formatContent2(node.getData());
-			if (node.getChildren().size() > 0) {
-				html += generateHTML(node.getChildren());
-			}
-			html += "</li>";
-		}
+	// private String generateHTML_jstree(List<TreeNode> nodeArray){
+	// 	String html = "<ul>";
+	// 	for (int i = 0; i <nodeArray.size(); i++) {
+	// 		TreeNode<Comment> node = nodeArray.get(i);
+	// 		html += "<li class='jstree-open'>" + formatContent2(node.getData());
+	// 		if (node.getChildren().size() > 0) {
+	// 			html += generateHTML(node.getChildren());
+	// 		}
+	// 		html += "</li>";
+	// 	}
 		
-		html += "</ul>";
+	// 	html += "</ul>";
 
+	// 	return html;
+	// }
+
+	private String formatContentTable(Comment comment){
+		String html = "<table class=\"tree\">";
+		html += "<tr class=\"tree\"><th class=\"tree\">User</th><th class=\"tree\">Content</th><th class=\"tree\">Time Posted</th><th class=\"tree\">Add Comment</th></tr>";
+		html += "<tr class=\"tree\"><th class=\"tree\"><a href='/profile/"+comment.getUsername()+"'>"+comment.getUsername()+"</a></th><td class=\"tree\">"+comment.getContent()+"</td><td class=\"tree\">"+comment.getCreated()+"</td><td class=\"tree\"><a href='/createComment?parentId="+comment.getId()+"&pollId="+myPollId+"'>Add Comment</a></td></tr>";
+		html += "</table><p></p>";
 		return html;
 	}
 
 	private String formatContent(Comment comment){
-		String html = "<table border="+1+">";
-		html += "<tr><th>User</th><th>Content</th><th>Time Posted</th><th>Add Comment</th></tr>";
-		html += "<tr><th><a href='/profile/"+comment.getUsername()+"'>"+comment.getUsername()+"</a></th><td>"+comment.getContent()+"</td><td>"+comment.getCreated()+"</td><td><a href='/createComment?parentId="+comment.getId()+"&pollId="+myPollId+"'>Add Comment</a></td></tr>";
-		html += "</table>";
+		String html = "<a href='/profile/"+comment.getUsername()+"'>"+ comment.getUsername()+ "</a> said at "+comment.getCreated()+": "+comment.getContent()+" | <a href='/createComment?parentId="+comment.getId()+"&pollId="+myPollId+"'>Reply</a><br/>";
 		return html;
 	}
-
-	private String formatContent2(Comment comment){
-        // String html = "<table border="+1+">";
-        // html = "<p>User | Content | Time Posted | Add Comment</p>";
-        // String html = "<p><a href='/profile/"+comment.getUsername()+"'>"+comment.getUsername()+"</a> said at "+comment.getCreated()+":"+comment.getContent()+" | <a href='/createComment?parentId="+comment.getId()+"&pollId="+myPollId+"'>Reply</a></p>";
-        String html = "<a href='/profile/"+comment.getUsername()+"'>"+ comment.getUsername()+ " said at "+comment.getCreated()+": "+comment.getContent()+" | <a href='/createComment?parentId="+comment.getId()+"&pollId="+myPollId+"'>Reply</a>" + "</a>";
-
-        // html += "</table>";
-        return html;
-    }
 
 	// This should ideally be done in javascript
-//	private String generateHTML_1(TreeNode<Comment> node){
-//		String html = "<ul>";
-//		
-//		html += "<li>" + node.getData().getContent();
-//		if (node.getChildren().size() == 0){
-//			html += "</li>";
-//			return html;
-//		}
-//		for (TreeNode<Comment> child:node.getChildren()) {
-//				html += "<ul>";
-//		        html += generateHTML(child);
-//		        html += "</ul>";
-//		}
-//
-//		return html;
-//	}
-	
-	private String getFormattedTrees(List<TreeNode> commentsTree){
-		//List<String> lis = new ArrayList<String>();
-		String html = generateHTML(commentsTree);
-		//lis.add(html);
-		
+	private String generateHTML(TreeNode<Comment> node){
+		String html = "";
+		html += "<ul><li>" + formatContent(node.getData()) + "</li>";
+		if (node.getChildren().size() == 0){
+			return html;
+		}
+		for (TreeNode<Comment> child:node.getChildren()) {
+		        html += generateHTML(child);
+		        html += "</ul>";
+		}
 		return html;
 	}
-
-//	private List<String> getFormattedTrees_1(List<TreeNode> commentsTree){
-//		List<String> lis = new ArrayList<String>();
-//		for (TreeNode<Comment> node:commentsTree){
-//			String html = generateHTML(node);
-//			lis.add(html);
-//		}
-//		return lis;
-//	}
+	
+	private List<String> getFormattedTrees(List<TreeNode> commentsTree){
+		List<String> lis = new ArrayList<String>();
+		for (TreeNode<Comment> node:commentsTree){
+			String html = generateHTML(node);
+			lis.add(html);
+		}
+		return lis;
+	}
 
 }
