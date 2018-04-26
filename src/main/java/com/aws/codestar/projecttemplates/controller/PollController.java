@@ -231,7 +231,7 @@ public class PollController {
 		String html = "<ul>";
 		for (int i = 0; i <nodeArray.size(); i++) {
 			TreeNode<Comment> node = nodeArray.get(i);
-			html += "<li class='jstree-open'>" + node.getData().getContent();
+			html += "<li class='jstree-open'>" + formatContent2(node.getData());
 			if (node.getChildren().size() > 0) {
 				html += generateHTML(node.getChildren());
 			}
@@ -250,6 +250,16 @@ public class PollController {
 		html += "</table>";
 		return html;
 	}
+
+	private String formatContent2(Comment comment){
+        // String html = "<table border="+1+">";
+        // html = "<p>User | Content | Time Posted | Add Comment</p>";
+        // String html = "<p><a href='/profile/"+comment.getUsername()+"'>"+comment.getUsername()+"</a> said at "+comment.getCreated()+":"+comment.getContent()+" | <a href='/createComment?parentId="+comment.getId()+"&pollId="+myPollId+"'>Reply</a></p>";
+        String html = "<a href='/profile/"+comment.getUsername()+"'>"+ comment.getUsername()+ " said at "+comment.getCreated()+": "+comment.getContent()+" | <a href='/createComment?parentId="+comment.getId()+"&pollId="+myPollId+"'>Reply</a>" + "</a>";
+
+        // html += "</table>";
+        return html;
+    }
 
 	// This should ideally be done in javascript
 //	private String generateHTML_1(TreeNode<Comment> node){
