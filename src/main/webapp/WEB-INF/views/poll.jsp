@@ -90,6 +90,9 @@
                 <tr class="line-height">
                         <td><h3>Discussion:</h3></td>
                 </tr>
+                <tr class="line-height">
+                        <td><p><a href='/createComment?parentId=0&pollId=${myPollId}'>Create Root Comment</a><p></td>
+                </tr>
     	        <c:forEach var="singleTree" items="${htmlTree}" varStatus="status">
                     ${singleTree}
                 </c:forEach>   

@@ -72,6 +72,7 @@ public class PollController {
 		pollModel.addAttribute("listComments", comments);
 		pollModel.addAttribute("treeComments", commentsTree);
 		pollModel.addAttribute("htmlTree", htmlTree);
+		pollModel.addAttribute("myPollId", myPollId);
 
 		List<PollOption> pollOptions = pollOptionService.getPollOptionsByPoll(id);
 		pollModel.addAttribute("listPollOptions", pollOptions);
