@@ -42,6 +42,11 @@ public class SearchController{
         return "searchPolls";
     }
 
+    @RequestMapping(value = "/searchResults", method = RequestMethod.GET)
+    public String searchResultsGet(ModelMap searchModel) {
+        return "redirect:searchPolls";
+    }
+
     @RequestMapping(value = "/searchResults", method = RequestMethod.POST)
     public String searchResults(@RequestParam(value = "criteria", required = true) String criteria,
         @ModelAttribute("category") Category cat, BindingResult result, ModelMap resultsModel) {

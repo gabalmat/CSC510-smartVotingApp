@@ -94,36 +94,6 @@
 		            </c:otherwise>
 	            </c:choose>
 	            
-<!-- 	            <tr class="line-height"> -->
-<!--                         <td><h3>Discussion:</h3></td> -->
-<!--                 </tr> -->
-<!--                 <tr class="line-height"> -->
-<%--                         <td><p><a href='/createComment?parentId=0&pollId=${myPollId}'>Create Root Comment</a><p></td> --%>
-<!--                 </tr> -->
-<%--     	        <c:forEach var="singleTree" items="${htmlTree}" varStatus="status"> --%>
-<%--                     ${singleTree} --%>
-<%--                 </c:forEach>    --%>
-	           
-<!--                 <tr class="line-height"> -->
-<!--                         <td><h3>Discussion Table:</h3></td> -->
-<!--                 </tr> -->
-<!--                 <table border="1"> -->
-<!--                     <th>No</th> -->
-<!--                     <th>Username</th> -->
-<!--                     <th>Content</th> -->
-<!--                     <th>Parent</th> -->
-<!--                     <th>Time Posted</th> -->
-<%--                     <c:forEach var="comment" items="${listComments}" varStatus="status"> --%>
-<!--                     <tr> -->
-<%--                         <td>${status.index + 1}</td> --%>
-<%--                         <td>${comment.userId}</td> --%>
-<%--                         <th>${comment.content}</th> --%>
-<%--                         <th>${comment.parentId}</th> --%>
-<%--                         <th>${comment.created}</th> --%>
-<!--                     </tr> -->
-<%--                     </c:forEach> --%>
-<!--                 </table> -->
-
                 <div style="text-align:center">
                 	<table class="discussion-tree">
 	                	<tr>
@@ -135,11 +105,7 @@
 	                </table>
                 </div>
 	    	</div>
-			
-            <p></p>
-            <br/>
-            <p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>
-        
+
 	    </div>
 	</div>
 	
@@ -189,5 +155,12 @@
 			});
 		});
 	</script>
+
+	<p></p>
+	<br/>
+	<p style="text-align:center;"><b><a style="cursor:pointer; text-decoration:underline; " href='<spring:url value="/"/>'>Home Page</a></b></p>
+	<footer>
+      <p class="footer-contents">Designed and developed by NCSU CSC 510 Team A</p>
+    </footer>
 </body>
 </html>

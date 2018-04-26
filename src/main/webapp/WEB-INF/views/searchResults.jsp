@@ -24,11 +24,12 @@
 
       <div class="message poll-content">
         <div class="text">
-          <h3>Search criteria: ${criteriaChoice}.</h3>
-          <h3>Search criteria: ${categoryChoice}.</h3>
-          <h3>Found ${searchCount} results:</h3>
-
-          <table border="1">
+          <h3>Search criteria:</h3>
+          <h3>Query: "${criteriaChoice}"  -  Category: ${categoryChoice}</h3>
+          <h3>Found ${searchCount} results</h3>
+          <p></p>
+          <p></p>
+          <table border="1" class="pollsTables">
               <th>No</th>
               <th>User</th>
               <th>Title</th>

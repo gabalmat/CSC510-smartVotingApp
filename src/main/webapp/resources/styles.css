@@ -156,8 +156,8 @@ keyframes dash {to { stroke-dashoffset:0;
 @media ( min-height : 500px) and (min-width: 700px) {
 	.message {
 		padding: 0;
-		width: 50%;
-		left: calc(50vw - 23rem);
+		width: 75%;
+		left: calc(50vw - 28rem);
 /* 		top: calc(15vh - 5rem); */
 	}
 	.message .text {
@@ -176,8 +176,8 @@ keyframes dash {to { stroke-dashoffset:0;
 	}
 	.poll-content {
 		padding: 0;
-		width: 50%;
-		left: calc(50vw - 50rem);
+		width: 75%;
+		left: calc(50vw - 55rem);
 	}
 }
 
@@ -201,6 +201,23 @@ keyframes dash {to { stroke-dashoffset:0;
 	}
 }
 
+.pollsTables {
+	margin-top: 20px;
+	border-collapse: collapse;
+    border: 1px solid black;
+    width: 100%;
+}
+
+.pollsTables tr td, .pollsTables tr th{
+	border-collapse: collapse;
+    border: 1px solid black;
+    padding: 15px;
+} 
+
+.pollsTables tr:nth-child(even) {background-color: #4673C1;}
+
+.pollsTables tr:hover {background-color: #61BEFB;}
+
 .login-form button {
 	border: 1.5px solid #fff;
 	width: fit-content;
@@ -211,7 +228,7 @@ keyframes dash {to { stroke-dashoffset:0;
 	color: #236da6;
 	background: #fff;
 	cursor: pointer;
-	float: right;
+	float: center;
 	font-weight: 550;
 }
 
@@ -243,7 +260,7 @@ keyframes dash {to { stroke-dashoffset:0;
 	color: #236da6;
 	background: #fff;
 	cursor: pointer;
-	float: right;
+	float: center;
 	font-weight: 550;
 }
 
@@ -310,6 +327,10 @@ keyframes dash {to { stroke-dashoffset:0;
 input[type=radio] {
 	margin: 5px;
 	cursor: pointer;
+}
+
+input[type=text] {
+	width: 200px;
 }
 
 .discussion-tree {

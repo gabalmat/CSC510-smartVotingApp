@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import com.aws.codestar.projecttemplates.util.TreeNode;
 import com.aws.codestar.projecttemplates.model.Category;
@@ -127,7 +128,7 @@ public class PollController {
 		return "addPollOption";
 	}
 	
-	@RequestMapping(value = "/vote", method = RequestMethod.POST)
+	@RequestMapping(value = "/vote", method = { RequestMethod.POST, RequestMethod.GET })
 	public String addVote(@ModelAttribute("newVote") Vote submittedVote, BindingResult result, ModelMap pollModel) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -135,7 +136,13 @@ public class PollController {
 		User user = userService.getUser(userName);
 		
 		submittedVote.setUserId(user.getUserid());
-		voteService.addVote(submittedVote);
+		try {
+		    voteService.addVote(submittedVote);
+		} catch (DataIntegrityViolationException e) {
+		    // pollModel.addAttribute("msg", "Please select an option");
+		    pollModel.addAttribute("pollId", submittedVote.getPollId());
+		    return "redirect:/poll/{pollId}";
+		}
 		
 		pollModel.addAttribute("msg", "Vote submitted successfully");
 		pollModel.addAttribute("pollId", submittedVote.getPollId());
@@ -146,9 +153,7 @@ public class PollController {
 	@RequestMapping(value = "/createComment")
 	public String createComment(@RequestParam(value = "pollId", required = true) int pollId,
 	        @RequestParam(value = "parentId", required = true) int parentId,
-	        ModelMap commentModel
-	        ) 
-	{
+	        ModelMap commentModel){
 
 		commentModel.addAttribute("pollId", pollId);
 		commentModel.addAttribute("parentId", parentId);

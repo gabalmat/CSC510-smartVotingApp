@@ -29,5 +29,9 @@
       	</div>
       </div>
 	</div>
+
+  <footer>
+      <p class="footer-contents">Designed and developed by NCSU CSC 510 Team A</p>
+  </footer>
 </body>
 </html>
