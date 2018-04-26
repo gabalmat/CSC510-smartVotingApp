@@ -1,7 +1,9 @@
 package com.aws.codestar.projecttemplates.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -60,8 +62,9 @@ public class PollController {
 		pollModel.addAttribute("category", cat);
 
 		List<Comment> comments = commentService.getCommentsByPollId(id);
+		
 		List<TreeNode> commentsTree = makeCommentsTree(comments);
-		List<String> htmlTree = getFormattedTrees(commentsTree);
+		String htmlTree = getFormattedTrees(commentsTree);
 		
 		pollModel.addAttribute("listComments", comments);
 		pollModel.addAttribute("treeComments", commentsTree);
@@ -164,29 +167,56 @@ public class PollController {
 	    
 	    return commentsTree;
 	}
-
-	// This should ideally be done in javascript
-	private String generateHTML(TreeNode<Comment> node){
-		String html = "";
-		html += "<ul><li><div>" + node.getData().getContent() + "</div></li>";
-		if (node.getChildren().size() == 0){
-			return html;
+	
+	private String generateHTML(List<TreeNode> nodeArray){
+		String html = "<ul>";
+		for (int i = 0; i <nodeArray.size(); i++) {
+			TreeNode<Comment> node = nodeArray.get(i);
+			html += "<li class='jstree-open'>" + node.getData().getContent();
+			if (node.getChildren().size() > 0) {
+				html += generateHTML(node.getChildren());
+			}
+			html += "</li>";
 		}
-		for (TreeNode<Comment> child:node.getChildren()) {
-		        html += generateHTML(child);
-		        html += "</ul>";
-		}
+		
+		html += "</ul>";
 
 		return html;
 	}
 
-	private List<String> getFormattedTrees(List<TreeNode> commentsTree){
-		List<String> lis = new ArrayList<String>();
-		for (TreeNode<Comment> node:commentsTree){
-			String html = generateHTML(node)+"</ul>";
-			lis.add(html);
-		}
-		return lis;
+	// This should ideally be done in javascript
+//	private String generateHTML_1(TreeNode<Comment> node){
+//		String html = "<ul>";
+//		
+//		html += "<li>" + node.getData().getContent();
+//		if (node.getChildren().size() == 0){
+//			html += "</li>";
+//			return html;
+//		}
+//		for (TreeNode<Comment> child:node.getChildren()) {
+//				html += "<ul>";
+//		        html += generateHTML(child);
+//		        html += "</ul>";
+//		}
+//
+//		return html;
+//	}
+	
+	private String getFormattedTrees(List<TreeNode> commentsTree){
+		//List<String> lis = new ArrayList<String>();
+		String html = generateHTML(commentsTree);
+		//lis.add(html);
+		
+		return html;
 	}
+
+//	private List<String> getFormattedTrees_1(List<TreeNode> commentsTree){
+//		List<String> lis = new ArrayList<String>();
+//		for (TreeNode<Comment> node:commentsTree){
+//			String html = generateHTML(node);
+//			lis.add(html);
+//		}
+//		return lis;
+//	}
 
 }

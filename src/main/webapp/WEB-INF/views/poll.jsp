@@ -10,6 +10,13 @@
 	<title>${poll.title}</title>
 	<meta name="description" content="" />
 	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  			crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+	
     <spring:url value="/resources/gradients.css" var="gradientsCss" />
     <spring:url value="/resources/styles.css" var="stylesCss" />
     <spring:url value="/resources/set-background.js" var="setBackgroundJs" />
@@ -81,36 +88,37 @@
 		            </c:otherwise>
 	            </c:choose>
 	           
-                <tr class="line-height">
-                        <td><h3>Discussion Table:</h3></td>
-                </tr>
-                <table border="1">
-                    <th>No</th>
-                    <th>Username</th>
-                    <th>Content</th>
-                    <th>Parent</th>
-                    <th>Time Posted</th>
-                    <c:forEach var="comment" items="${listComments}" varStatus="status">
-                    <tr>
-                        <td>${status.index + 1}</td>
-                        <td>${comment.userId}</td>
-                        <th>${comment.content}</th>
-                        <th>${comment.parentId}</th>
-                        <th>${comment.created}</th>
-                    </tr>
-                    </c:forEach>
-                </table>
-
-                <tr class="line-height">
-                    <td><h3>Discussion Tree:</h3></td>
-                </tr>
-                
+<!--                 <tr class="line-height"> -->
+<!--                         <td><h3>Discussion Table:</h3></td> -->
+<!--                 </tr> -->
+<!--                 <table border="1"> -->
+<!--                     <th>No</th> -->
+<!--                     <th>Username</th> -->
+<!--                     <th>Content</th> -->
+<!--                     <th>Parent</th> -->
+<!--                     <th>Time Posted</th> -->
+<%--                     <c:forEach var="comment" items="${listComments}" varStatus="status"> --%>
+<!--                     <tr> -->
+<%--                         <td>${status.index + 1}</td> --%>
+<%--                         <td>${comment.userId}</td> --%>
+<%--                         <th>${comment.content}</th> --%>
+<%--                         <th>${comment.parentId}</th> --%>
+<%--                         <th>${comment.created}</th> --%>
+<!--                     </tr> -->
+<%--                     </c:forEach> --%>
+<!--                 </table> -->
+                <div style="text-align:center">
+                	<table class="discussion-tree">
+	                	<tr>
+		                    <td><h3><b>Discussion Tree:</b></h3></td>
+		                </tr>
+	                	<tr>
+	                		<td><div id="commentTree">${htmlTree}</div></td>
+	                	</tr>
+	                </table>
+                </div>
 	    	</div>
-
-            <c:forEach var="singleTree" items="${htmlTree}" varStatus="status">
-                ${singleTree}
-            </c:forEach>
-
+			
             <p></p>
             <br/>
             <p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>
@@ -119,5 +127,12 @@
 	</div>
 	
 	<script src="${setBackgroundJs}"></script>
+	<script type="text/javascript">
+		//once the DOM has been created, initialize the tree
+		$(function() {
+			$.jstree.defaults.core.themes.variant = "large";
+			$('#commentTree').jstree();
+		});
+	</script>
 </body>
 </html>

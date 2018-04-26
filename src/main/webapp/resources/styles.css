@@ -311,3 +311,15 @@ input[type=radio] {
 	margin: 5px;
 	cursor: pointer;
 }
+
+.discussion-tree {
+	background-color: #c7ced0;
+    border: 1px solid black;
+    margin: 30px;
+    padding: 15px;
+    color: #161717;
+}
+
+.discussion-tree td {
+	text-align: left;
+}
