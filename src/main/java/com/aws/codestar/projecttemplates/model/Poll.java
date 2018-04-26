@@ -7,6 +7,7 @@ public class Poll {
 	private int pollId;
 	private int userId;
 	private int categoryId;
+	private String username;
 	
 	public Poll() {}
 	
@@ -55,5 +56,12 @@ public class Poll {
 		this.categoryId = categoryId;
 	}
 	
+	public String getUsername() {
+	    return username;
+	}
+
+	public void setUsername(String username) {
+	    this.username = username;
+	}
 	
 }

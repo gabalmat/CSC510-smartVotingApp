@@ -5,7 +5,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>SearchResults</title>
+    <title>UserProfile</title>
     <meta name="description" content="" />
 
     <spring:url value="/resources/gradients.css" var="gradientsCss" />
@@ -24,29 +24,30 @@
 
       <div class="message poll-content">
         <div class="text">
-          <h3>Search criteria: ${criteriaChoice}.</h3>
-          <h3>Search criteria: ${categoryChoice}.</h3>
-          <h3>Found ${searchCount} results:</h3>
+          <h2 class="margin-bottom-3">${user.firstName} ${user.lastName}</h2>
+          <h3 class="margin-bottom-3">Email: ${user.email}</h3>
+          <h3 class="margin-bottom-3">Username: ${user.username}</h3>
+          <h3 class="margin-bottom-3">Member since: ${user.created}</h3>
+          <p></p>
+          <br/>
+          <img src="${pageContext.request.contextPath}/resources/images/blank-profile-picture.png" width="256" height="256">
+
+          <h3>${user.username} has created ${pollsCount} polls:</h3>
 
           <table border="1">
               <th>No</th>
-              <th>User</th>
               <th>Title</th>
               <th>Description</th>
               <th>Link</th>
               <c:forEach var="poll" items="${listPolls}" varStatus="status">
               <tr>
                   <td>${status.index + 1}</td>
-                  <td><a href='<spring:url value="/profile/${poll.username}"/>'>${poll.username}</a></td>
                   <td>${poll.title}</td>
-                  <th>${poll.description}</th>
+                  <td>${poll.description}</td>
                   <th><b><a href='<spring:url value="/poll/${poll.pollId}"/>'>View Poll</a></b></th>
               </tr>
               </c:forEach>             
           </table>
-          <p></p>
-          <br/>
-          <p><b><a href='<spring:url value="/searchPolls"/>'>Another Search</a></b></p>
           <p></p>
           <br/>
           <p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>

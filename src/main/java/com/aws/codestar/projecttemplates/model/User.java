@@ -8,8 +8,18 @@ public class User {
 	private String password;
 	private String username;
 	private int userid;
+	private String created;
 	
 	public User() {}
+
+	public User(String email, String firstName, String lastName, String password, String username, int userid) {
+		this.setEmail(email);
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
+		this.setPassword(password);
+		this.setUsername(username);
+		this.setUserid(userid);
+	}
 
 	public String getEmail() {
 		return email;
@@ -57,5 +67,13 @@ public class User {
 
 	public void setUserid(int userid) {
 		this.userid = userid;
+	}
+
+	public String getCreated() {
+		return created;
+	}
+
+	public void setCreated(String created) {
+		this.created = created;
 	}
 }

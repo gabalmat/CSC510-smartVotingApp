@@ -38,6 +38,12 @@ public class PollDao {
 		return polls;
 	}
 
+	public List<Poll> getPollsWhereWithCat(final String keyword, final int catId) {
+		List<Poll> polls = jdbcTemplate.query("select * from polls where (lower(description) LIKE ? or lower(title) LIKE ?) and category_id = ?", 
+				new Object[] {"%" + keyword + "%", "%" + keyword + "%", catId}, new PollRowMapper());
+		return polls;
+	}
+
 	public List<Poll> getUserPolls(final int id) {
 		List<Poll> polls = jdbcTemplate.query("select * from polls where user_id = ?", 
 				new Object[] {id}, new PollRowMapper());

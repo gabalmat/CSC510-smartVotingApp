@@ -16,6 +16,10 @@ public class UserService {
 		return userDao.getUser(username);
 	}
 
+    public User getUser(final int id) {
+        return userDao.getUser(id);
+    }
+
     public int getUserId(final String username) {
         return userDao.getUserId(username);
     }

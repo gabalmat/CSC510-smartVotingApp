@@ -1,9 +1,7 @@
 package com.aws.codestar.projecttemplates.controller;
 
 import java.util.List;
-import java.util.Map;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -16,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.DataAccessException;
 
 import com.aws.codestar.projecttemplates.util.TreeNode;
 import com.aws.codestar.projecttemplates.model.Category;
@@ -51,6 +51,8 @@ public class PollController {
 	
 	@Autowired
 	private VoteService voteService;
+
+	private int myPollId;
 	
 	@RequestMapping("/poll/{id}")
 	public String getPoll(@PathVariable int id, ModelMap pollModel) {
@@ -62,13 +64,15 @@ public class PollController {
 		pollModel.addAttribute("category", cat);
 
 		List<Comment> comments = commentService.getCommentsByPollId(id);
-		
+		comments = addUsername(comments, userService);
 		List<TreeNode> commentsTree = makeCommentsTree(comments);
+		myPollId = id;
 		String htmlTree = getFormattedTrees(commentsTree);
 		
 		pollModel.addAttribute("listComments", comments);
 		pollModel.addAttribute("treeComments", commentsTree);
 		pollModel.addAttribute("htmlTree", htmlTree);
+		pollModel.addAttribute("myPollId", myPollId);
 
 		List<PollOption> pollOptions = pollOptionService.getPollOptionsByPoll(id);
 		pollModel.addAttribute("listPollOptions", pollOptions);
@@ -139,6 +143,61 @@ public class PollController {
 		return "redirect:/poll/{pollId}";
 	}
 
+	@RequestMapping(value = "/createComment")
+	public String createComment(@RequestParam(value = "pollId", required = true) int pollId,
+	        @RequestParam(value = "parentId", required = true) int parentId,
+	        ModelMap commentModel
+	        ) 
+	{
+
+		commentModel.addAttribute("pollId", pollId);
+		commentModel.addAttribute("parentId", parentId);
+
+	    return "createComment";
+	}
+
+	@RequestMapping(value = "/commentCreateResult", method = RequestMethod.POST)
+	public String addComment(@RequestParam(value = "pollId", required = true) int pollId,
+	        @RequestParam(value = "parentId", required = true) int parentId,
+	        @RequestParam(value = "content", required = true) String content,
+	        ModelMap commentModel) {
+
+	    String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+	    int user_id = userService.getUserId(userName);
+
+	    Comment comment = new Comment();
+	    comment.setPollId(pollId);
+	    comment.setContent(content);
+	    comment.setUserId(user_id);
+	    comment.setUsername(userName);
+	    comment.setParentId(parentId);
+
+	    try {
+	        commentService.addComment(comment);
+	        commentModel.addAttribute("addCommentSuccess", "Comment added successfully");
+	    } catch (DuplicateKeyException e) {
+	        String reason = "Message: " + e.getMessage() + " | Root cause: " + e.getRootCause();
+	        commentModel.addAttribute("failReason", reason);
+	    } catch (DataAccessException e) {
+	        String reason = "Message: " + e.getMessage() + " | Root cause: " + e.getRootCause();
+	        commentModel.addAttribute("failReason", reason);
+	    }
+
+	    commentModel.addAttribute("origPollId", pollId);
+
+	    return "redirect:/poll/{origPollId}";
+	}
+
+	// Helper functions
+
+	public List<Comment> addUsername(List<Comment> comments, UserService userService){
+		for (Comment comment:comments){
+			String username = userService.getUser(comment.getUserId()).getUsername();
+			comment.setUsername(username);
+		}
+		return comments;
+	}
+
 	// This function is very, very inefficient. However, it works.
 	// If performsnce becomes an issue, this can be optimized.
 	public List<TreeNode> makeCommentsTree(List<Comment> comments){
@@ -181,6 +240,14 @@ public class PollController {
 		
 		html += "</ul>";
 
+		return html;
+	}
+
+	private String formatContent(Comment comment){
+		String html = "<table border="+1+">";
+		html += "<tr><th>User</th><th>Content</th><th>Time Posted</th><th>Add Comment</th></tr>";
+		html += "<tr><th><a href='/profile/"+comment.getUsername()+"'>"+comment.getUsername()+"</a></th><td>"+comment.getContent()+"</td><td>"+comment.getCreated()+"</td><td><a href='/createComment?parentId="+comment.getId()+"&pollId="+myPollId+"'>Add Comment</a></td></tr>";
+		html += "</table>";
 		return html;
 	}
 

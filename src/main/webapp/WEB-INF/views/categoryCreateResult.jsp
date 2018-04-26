@@ -39,6 +39,9 @@
                 </c:if>
                 <p></p>
                 <br/>
+                <p><b><a href='<spring:url value="/addPoll"/>'>Create Poll</a></b></p>
+                <p></p>
+                <br/>
                 <p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>
 	    	</div>
 	    </div>

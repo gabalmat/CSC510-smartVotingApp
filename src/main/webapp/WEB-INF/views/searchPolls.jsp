@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -25,17 +26,25 @@
         <div class="text">
           <h2>Type the search criteria below to search for a poll:</h2>
 
-          <form action='<spring:url value="/searchResults"/>' method="post">
-            <table class="search-form">
+          <form:form action="/searchResults" method="POST" modelAttribute="category">
+            <table class="login-form">
               <tr>
                 <td>Search Criteria: </td>
                 <td><input type="text" name="criteria" value="${criteria}" ></td>
+              </tr>
+              <tr class="cat-selection">
+                <td class="first-td"><form:label path="id">Category: </form:label></td>
+                <td>
+                  <form:select path="id" class="cat-dropdown">
+                    <form:options items="${categoryList}" itemValue="id" itemLabel="name" />
+                  </form:select>
+                </td>
               </tr>
               <tr>
                 <td colspan=2><button type="submit">Search</button></td>
               </tr>
             </table>
-          </form>
+          </form:form>
           <p></p>
           <br/>
           <p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>

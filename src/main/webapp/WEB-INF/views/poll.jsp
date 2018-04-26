@@ -40,6 +40,12 @@
                     <p><b><a href='<spring:url value="/poll/${poll.pollId}"/>'>Poll #${poll.pollId}</a></b></p>
 				</c:if>
 
+                <c:if test="${not empty addCommentSuccess}">
+                    ${addCommentSuccess}
+                    <br/>
+                    <p><b><a href='<spring:url value="/poll/${poll.pollId}"/>'>Poll #${poll.pollId}</a></b></p>
+                </c:if>
+
 				<table width="100%" class="display-poll">
 					<tr class="line-height">
                     	<td><b>Category: </b> ${category.name} - ${category.description}</td>
@@ -87,6 +93,16 @@
 			            </form:form>
 		            </c:otherwise>
 	            </c:choose>
+	            
+	            <tr class="line-height">
+                        <td><h3>Discussion:</h3></td>
+                </tr>
+                <tr class="line-height">
+                        <td><p><a href='/createComment?parentId=0&pollId=${myPollId}'>Create Root Comment</a><p></td>
+                </tr>
+    	        <c:forEach var="singleTree" items="${htmlTree}" varStatus="status">
+                    ${singleTree}
+                </c:forEach>   
 	           
 <!--                 <tr class="line-height"> -->
 <!--                         <td><h3>Discussion Table:</h3></td> -->

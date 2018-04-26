@@ -13,6 +13,7 @@ import com.aws.codestar.projecttemplates.controller.SmartVotingController;
 import com.aws.codestar.projecttemplates.controller.SearchController;
 import com.aws.codestar.projecttemplates.controller.MyPollsController;
 import com.aws.codestar.projecttemplates.controller.CategoryController;
+import com.aws.codestar.projecttemplates.controller.UserProfileController;
 
 
 /**
@@ -57,6 +58,11 @@ public class ApplicationConfig {
     @Bean
     public MyPollsController myPolls() {
         return new MyPollsController();
+    }
+
+    @Bean
+    public UserProfileController userProfile() {
+        return new UserProfileController();
     }
 
     /**

@@ -8,6 +8,19 @@ public class Comment{
     private int id;
     private String content;
     private String created;
+    private String username;
+
+    public Comment() {}
+
+    public Comment(int userId, int pollId, int parentId, int id, String content, String created) {
+        this.setUserId(userId);
+        this.setPollId(pollId);
+        this.setParentId(parentId);
+        this.setId(id);
+        this.setContent(content);
+        this.setCreated(created);
+        
+    }
 
     public int getUserId() {
         return userId;
@@ -55,6 +68,14 @@ public class Comment{
 
     public void setCreated(String created) {
         this.created = created;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 }
