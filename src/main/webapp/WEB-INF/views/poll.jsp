@@ -80,36 +80,15 @@
 			            </form:form>
 		            </c:otherwise>
 	            </c:choose>
-	           
-                <tr class="line-height">
-                        <td><h3>Discussion Table:</h3></td>
-                </tr>
-                <table border="1">
-                    <th>No</th>
-                    <th>User</th>
-                    <th>Content</th>
-                    <th>Parent</th>
-                    <th>Time Posted</th>
-                    <c:forEach var="comment" items="${listComments}" varStatus="status">
-                    <tr>
-                        <td>${status.index + 1}</td>
-                        <td><a href='<spring:url value="/profile/${comment.username}"/>'>${comment.username}</a></td>
-                        <th>${comment.content}</th>
-                        <th>${comment.parentId}</th>
-                        <th>${comment.created}</th>
-                    </tr>
-                    </c:forEach>
-                </table>
 
                 <tr class="line-height">
-                    <td><h3>Discussion Tree:</h3></td>
+                        <td><h3>Discussion:</h3></td>
                 </tr>
-                
+    	        <c:forEach var="singleTree" items="${htmlTree}" varStatus="status">
+                    ${singleTree}
+                </c:forEach>   
+            
 	    	</div>
-
-            <c:forEach var="singleTree" items="${htmlTree}" varStatus="status">
-                ${singleTree}
-            </c:forEach>
 
             <p></p>
             <br/>

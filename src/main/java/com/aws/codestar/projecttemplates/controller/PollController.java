@@ -60,11 +60,10 @@ public class PollController {
 		pollModel.addAttribute("category", cat);
 
 		List<Comment> comments = commentService.getCommentsByPollId(id);
+		comments = addUsername(comments, userService);
 		List<TreeNode> commentsTree = makeCommentsTree(comments);
 		List<String> htmlTree = getFormattedTrees(commentsTree);
 		
-		comments = addUsername(comments, userService);
-
 		pollModel.addAttribute("listComments", comments);
 		pollModel.addAttribute("treeComments", commentsTree);
 		pollModel.addAttribute("htmlTree", htmlTree);
@@ -178,7 +177,7 @@ public class PollController {
 	// This should ideally be done in javascript
 	private String generateHTML(TreeNode<Comment> node){
 		String html = "";
-		html += "<ul><li><div>" + node.getData().getContent() + "</div></li>";
+		html += "<ul><li><div>" + formatContent(node.getData()) + "</div></li>";
 		if (node.getChildren().size() == 0){
 			return html;
 		}
@@ -187,6 +186,14 @@ public class PollController {
 		        html += "</ul>";
 		}
 
+		return html;
+	}
+
+	private String formatContent(Comment comment){
+		String html = "<table border="+1+">";
+		html += "<tr><th>User</th><th>Content</th><th>Time Posted</th><th>Add Comment</th></tr>";
+		html += "<tr><th><a href='"+comment.getUsername()+"'>"+comment.getUsername()+"</a></th><td>"+comment.getContent()+"</td><td>"+comment.getCreated()+"</td><td>"+"TODO_LINK"+"</td></tr>";
+		html += "</table>";
 		return html;
 	}
 
