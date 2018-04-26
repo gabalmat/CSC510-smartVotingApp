@@ -147,8 +147,46 @@
 	<script type="text/javascript">
 		//once the DOM has been created, initialize the tree
 		$(function() {
-			$.jstree.defaults.core.themes.variant = "large";
-			$('#commentTree').jstree();
+			$('#commentTree').jstree({
+				"core": {
+					"themes": {
+						"variant": "large"
+					},
+					"check_callback" : true
+				},
+				"plugins" : ["themes","html_data","ui","contextmenu"],
+				"contextmenu": {
+					"select_node": false,
+					"items": function($node) {
+						return {
+							"Create": {
+								"label": "Add Reply",
+								"icon": false,
+								"separator_after": true,
+								"action": function(data) {
+									var inst = $.jstree.reference(data.reference),
+							        	obj = inst.get_node(data.reference),
+							        	parentId = obj.data.id,
+							        	pollId = obj.data.pollid;
+									console.log(obj);
+									window.location.href = "/createComment?parentId=" + parentId + "&pollId=" + pollId;
+								}
+							},
+							"Mark": {
+								"label": "Mark as Significant",
+								"icon": false,
+								"action": function(obj) {
+									console.log("Reply  ", obj);
+								}
+							}
+						}
+					}
+				}
+			});
+			
+			$('#commentTree').on('select_node.jstree', function(e, data) {
+				window.location = data.node.a_attr.href;
+			});
 		});
 	</script>
 </body>

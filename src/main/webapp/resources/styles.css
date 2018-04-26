@@ -315,11 +315,27 @@ input[type=radio] {
 .discussion-tree {
 	background-color: #c7ced0;
     border: 1px solid black;
-    margin: 30px;
-    padding: 15px;
+    margin: 10px;
+    padding: 30px;
     color: #161717;
 }
 
 .discussion-tree td {
 	text-align: left;
+}
+
+.jstree-default a { 
+    white-space:normal !important; height: auto; 
+}
+.jstree-anchor {
+    height: auto !important;
+}
+.jstree-default li > ins { 
+    vertical-align:top; 
+}
+.jstree-leaf {
+    height: auto;
+}
+.jstree-leaf a{
+    height: auto !important;
 }

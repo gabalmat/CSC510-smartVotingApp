@@ -231,7 +231,8 @@ public class PollController {
 		String html = "<ul>";
 		for (int i = 0; i <nodeArray.size(); i++) {
 			TreeNode<Comment> node = nodeArray.get(i);
-			html += "<li class='jstree-open'>" + formatContent2(node.getData());
+			html += "<li class='jstree-open' title='Right click for menu' data-id='" + node.getData().getId() + "'" + "data-pollid='" + node.getData().getPollId() + "'>" + 
+							formatContent2(node.getData());
 			if (node.getChildren().size() > 0) {
 				html += generateHTML(node.getChildren());
 			}
@@ -255,9 +256,9 @@ public class PollController {
         // String html = "<table border="+1+">";
         // html = "<p>User | Content | Time Posted | Add Comment</p>";
         // String html = "<p><a href='/profile/"+comment.getUsername()+"'>"+comment.getUsername()+"</a> said at "+comment.getCreated()+":"+comment.getContent()+" | <a href='/createComment?parentId="+comment.getId()+"&pollId="+myPollId+"'>Reply</a></p>";
-        String html = "<a href='/profile/"+comment.getUsername()+"'>"+ comment.getUsername()+ " said at "+comment.getCreated()+": "+comment.getContent()+" | <a href='/createComment?parentId="+comment.getId()+"&pollId="+myPollId+"'>Reply</a>" + "</a>";
-
-        // html += "</table>";
+        String html = "<a href='/profile/"+comment.getUsername()+"'><u>"+ comment.getUsername()+ " </u><b>:</b> "+comment.getCreated()
+        		+ "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"+comment.getContent()+"</b></a>" + "</a>";
+        
         return html;
     }
 
@@ -280,9 +281,7 @@ public class PollController {
 //	}
 	
 	private String getFormattedTrees(List<TreeNode> commentsTree){
-		//List<String> lis = new ArrayList<String>();
 		String html = generateHTML(commentsTree);
-		//lis.add(html);
 		
 		return html;
 	}
