@@ -22,11 +22,13 @@ import com.aws.codestar.projecttemplates.util.TreeNode;
 import com.aws.codestar.projecttemplates.model.Category;
 import com.aws.codestar.projecttemplates.model.Poll;
 import com.aws.codestar.projecttemplates.model.PollOption;
+import com.aws.codestar.projecttemplates.model.SignComment;
 import com.aws.codestar.projecttemplates.model.User;
 import com.aws.codestar.projecttemplates.model.Vote;
 import com.aws.codestar.projecttemplates.model.Comment;
 import com.aws.codestar.projecttemplates.service.CategoryService;
 import com.aws.codestar.projecttemplates.service.PollService;
+import com.aws.codestar.projecttemplates.service.SignCommentService;
 import com.aws.codestar.projecttemplates.service.UserService;
 import com.aws.codestar.projecttemplates.service.VoteService;
 import com.aws.codestar.projecttemplates.service.CommentService;
@@ -52,6 +54,9 @@ public class PollController {
 	
 	@Autowired
 	private VoteService voteService;
+	
+	@Autowired
+	private SignCommentService signCommentService;
 
 	private int myPollId;
 	
@@ -192,6 +197,25 @@ public class PollController {
 
 	    return "redirect:/poll/{origPollId}";
 	}
+	
+	@RequestMapping(value = "/markSignificant", method = RequestMethod.POST)
+	public String markSignificant(@RequestParam(value = "commentId", required = true) int commentId,
+				@RequestParam(value = "pollId", required = true) int pollId,
+				ModelMap commentModel) {
+		
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+	    int user_id = userService.getUserId(userName);
+	    
+	    SignComment sigComment = new SignComment();
+	    sigComment.setUserId(user_id);
+	    sigComment.setCommentId(commentId);
+	    
+	    signCommentService.addSignComment(sigComment);
+	    
+	    commentModel.addAttribute("pollId", pollId);
+	    
+	    return "redirect:/poll/{pollId}";
+	}
 
 	// Helper functions
 
@@ -258,46 +282,16 @@ public class PollController {
 	}
 
 	private String formatContent2(Comment comment){
-        // String html = "<table border="+1+">";
-        // html = "<p>User | Content | Time Posted | Add Comment</p>";
-        // String html = "<p><a href='/profile/"+comment.getUsername()+"'>"+comment.getUsername()+"</a> said at "+comment.getCreated()+":"+comment.getContent()+" | <a href='/createComment?parentId="+comment.getId()+"&pollId="+myPollId+"'>Reply</a></p>";
         String html = "<a href='/profile/"+comment.getUsername()+"'><u>"+ comment.getUsername()+ " </u><b>:</b> "+comment.getCreated()
         		+ "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>"+comment.getContent()+"</b></a>" + "</a>";
         
         return html;
     }
-
-	// This should ideally be done in javascript
-//	private String generateHTML_1(TreeNode<Comment> node){
-//		String html = "<ul>";
-//		
-//		html += "<li>" + node.getData().getContent();
-//		if (node.getChildren().size() == 0){
-//			html += "</li>";
-//			return html;
-//		}
-//		for (TreeNode<Comment> child:node.getChildren()) {
-//				html += "<ul>";
-//		        html += generateHTML(child);
-//		        html += "</ul>";
-//		}
-//
-//		return html;
-//	}
 	
 	private String getFormattedTrees(List<TreeNode> commentsTree){
 		String html = generateHTML(commentsTree);
 		
 		return html;
 	}
-
-//	private List<String> getFormattedTrees_1(List<TreeNode> commentsTree){
-//		List<String> lis = new ArrayList<String>();
-//		for (TreeNode<Comment> node:commentsTree){
-//			String html = generateHTML(node);
-//			lis.add(html);
-//		}
-//		return lis;
-//	}
 
 }

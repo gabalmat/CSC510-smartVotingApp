@@ -18,27 +18,27 @@ public class SignCommentDao {
     private JdbcTemplate jdbcTemplate;
     
     public SignComment getSignCommentById(final int id) {
-        SignComment signComments = jdbcTemplate.queryForObject("select * from signComments where id = ?", new Object[] {id}, new SignCommentRowMapper());
+        SignComment signComments = jdbcTemplate.queryForObject("select * from significant_comments where id = ?", new Object[] {id}, new SignCommentRowMapper());
         return signComments;
     }
     
     public void addSignComment(final SignComment signComments) {
-        jdbcTemplate.update("insert into signComments (user_id, comment_id) values (?,?)",
+        jdbcTemplate.update("insert into significant_comments (user_id, comment_id) values (?,?)",
                 new Object[] { signComments.getUserId(), signComments.getCommentId()});
     }
     
     public List<SignComment> getSignComments() {
-        List<SignComment> signComments = jdbcTemplate.query("select * from signComments", new SignCommentRowMapper());
+        List<SignComment> signComments = jdbcTemplate.query("select * from significant_comments", new SignCommentRowMapper());
         return signComments;
     }
 
     public List<SignComment> getSignCommentsByCommentId(final int commentId) {
-        List<SignComment> signComments = jdbcTemplate.query("select * from signComments where comment_id = ?", new Object[] {commentId}, new SignCommentRowMapper());
+        List<SignComment> signComments = jdbcTemplate.query("select * from significant_comments where comment_id = ?", new Object[] {commentId}, new SignCommentRowMapper());
         return signComments;
     }
 
     public List<SignComment> getSignCommentsByUserId(final int userId) {
-        List<SignComment> signComments = jdbcTemplate.query("select * from signComments where user_id = ?", new Object[] {userId}, new SignCommentRowMapper());
+        List<SignComment> signComments = jdbcTemplate.query("select * from significant_comments where user_id = ?", new Object[] {userId}, new SignCommentRowMapper());
         return signComments;
     }
 

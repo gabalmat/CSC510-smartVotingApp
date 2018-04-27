@@ -134,15 +134,23 @@
 							        	obj = inst.get_node(data.reference),
 							        	parentId = obj.data.id,
 							        	pollId = obj.data.pollid;
-									console.log(obj);
 									window.location.href = "/createComment?parentId=" + parentId + "&pollId=" + pollId;
 								}
 							},
 							"Mark": {
 								"label": "Mark as Significant",
 								"icon": false,
-								"action": function(obj) {
-									console.log("Reply  ", obj);
+								"action": function(data) {
+									var inst = $.jstree.reference(data.reference),
+							        	obj = inst.get_node(data.reference),
+							        	id = obj.data.id,
+							        	pollId = obj.data.pollid;
+									
+									$.ajax({
+										type: "POST",
+										url: "/SmartVoting/markSignificant?commentId=" + id + "&pollId=" + pollId
+									});
+									
 								}
 							}
 						}
