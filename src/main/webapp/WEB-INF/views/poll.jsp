@@ -46,6 +46,11 @@
                     <p><b><a href='<spring:url value="/poll/${poll.pollId}"/>'>Poll #${poll.pollId}</a></b></p>
                 </c:if>
 
+                <c:if test="${not empty failReason}">
+                    ${failReason}
+                    <br/>
+                </c:if>
+
 				<table width="100%" class="display-poll">
 					<tr class="line-height">
                     	<td><b>Category: </b> ${category.name} - ${category.description}</td>
