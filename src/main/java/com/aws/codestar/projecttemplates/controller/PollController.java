@@ -131,9 +131,11 @@ public class PollController {
 	public String addPollOptions(@PathVariable int pollId, ModelMap pollOptionsModel) {
 		
 		List<PollOption> options = pollOptionService.getPollOptionsByPoll(pollId);
+		Poll poll = pollService.getPoll(pollId);
 		
 		pollOptionsModel.addAttribute("options", options);
 		pollOptionsModel.addAttribute("pollId", pollId);
+		pollOptionsModel.addAttribute("poll", poll);
 		pollOptionsModel.addAttribute("newOption", new PollOption());
 		
 		return "addPollOptions";
