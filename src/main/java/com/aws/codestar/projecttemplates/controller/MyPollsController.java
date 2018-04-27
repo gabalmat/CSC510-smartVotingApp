@@ -34,7 +34,7 @@ public class MyPollsController{
         String userName = context.getAuthentication().getName();
         int id = userService.getUserId(userName);
 
-        List<Poll> results = pollService.getUserPolls(id);
+        List<Poll> results = pollService.getUserPollsWithCat(id);
         myPollsModel.addAttribute("myPollsCount", results.size());
         myPollsModel.addAttribute("listPolls", results);
 

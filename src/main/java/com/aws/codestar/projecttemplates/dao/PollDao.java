@@ -50,4 +50,10 @@ public class PollDao {
 		return polls;
 	}
 
+	public List<Poll> getUserPollsWithCat(final int id) {
+		List<Poll> polls = jdbcTemplate.query("select title, polls.description, polls.user_id, polls.id, categories.name, polls.created, polls.category_id from polls, categories where polls.user_id = ? and polls.category_id = categories.id", 
+				new Object[] {id}, new PollRowMapper());
+		return polls;
+	}
+
 }
