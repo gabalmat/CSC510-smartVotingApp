@@ -285,6 +285,10 @@ keyframes dash {to { stroke-dashoffset:0;
 	margin: 2px 5px;
 }
 
+.search-form input[type=text] {
+	width: 185px;
+}
+
 .new-title {
 	width: 250px;
 }
@@ -334,10 +338,6 @@ keyframes dash {to { stroke-dashoffset:0;
 input[type=radio] {
 	margin: 5px;
 	cursor: pointer;
-}
-
-input[type=text] {
-	width: 200px;
 }
 
 .discussion-tree {

@@ -34,6 +34,8 @@
               <th>User</th>
               <th>Title</th>
               <th>Description</th>
+              <th>Created on</th>
+              <th>Category</th>
               <th>Link</th>
               <c:forEach var="poll" items="${listPolls}" varStatus="status">
               <tr>
@@ -41,9 +43,11 @@
                   <td><a href='<spring:url value="/profile/${poll.username}"/>'>${poll.username}</a></td>
                   <td>${poll.title}</td>
                   <th>${poll.description}</th>
+                  <td>${poll.created}</td>
+                  <td>${poll.categoryName}</td>
                   <th><b><a href='<spring:url value="/poll/${poll.pollId}"/>'>View Poll</a></b></th>
               </tr>
-              </c:forEach>             
+              </c:forEach>   
           </table>
           <p></p>
           <br/>

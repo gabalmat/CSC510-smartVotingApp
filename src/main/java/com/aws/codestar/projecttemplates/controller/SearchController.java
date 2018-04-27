@@ -62,6 +62,7 @@ public class SearchController{
         }
 
         results = addUsername(results, userService);
+        results = addCategory(results, catService);
 
         resultsModel.addAttribute("criteriaChoice", crit);
         resultsModel.addAttribute("categoryChoice", catName);
@@ -75,6 +76,14 @@ public class SearchController{
         for (Poll poll:polls){
             String username = userService.getUser(poll.getUserId()).getUsername();
             poll.setUsername(username);
+        }
+        return polls;
+    }
+
+    public List<Poll> addCategory(List<Poll> polls, CategoryService catService){
+        for (Poll poll:polls){
+            String catName = catService.getCategory(poll.getCategoryId()).getName();
+            poll.setCategoryName(catName);
         }
         return polls;
     }

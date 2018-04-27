@@ -27,7 +27,7 @@
 	    	<div class="text">
 				<c:if test="${not empty success}">
                     <h2>${success}</h2>
-                    <h2>Please go back to the home page and login to proceed.</h2>
+                    <h2>Please go back to the home page and login to proceed</h2>
 				</c:if>
                 <c:if test="${not empty failure}">
                     <h3>User not created, internal error:</h3>
@@ -35,7 +35,9 @@
                 </c:if>
                 <c:if test="${not empty userExists}">
                     <h2>${userExists}</h2>
-                    <h3>${reason}</h3>
+                    <c:if test="${not empty reason}">
+                        <h2>${reason}</h2>
+                    </c:if>
                 </c:if>
                 <p></p>
                 <br/>

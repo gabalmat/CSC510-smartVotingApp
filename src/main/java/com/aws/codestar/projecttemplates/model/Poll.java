@@ -8,6 +8,8 @@ public class Poll {
 	private int userId;
 	private int categoryId;
 	private String username;
+	private String created;
+	private String categoryName;
 	
 	public Poll() {}
 	
@@ -63,5 +65,21 @@ public class Poll {
 	public void setUsername(String username) {
 	    this.username = username;
 	}
+	
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 	
 }

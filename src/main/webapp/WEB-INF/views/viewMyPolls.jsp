@@ -27,16 +27,20 @@
           <h2>My Polls</h2>
           <h3>You have ${myPollsCount} polls:</h3>
 
-          <table border="1">
+          <table border="1" class="pollsTables">
               <th>No</th>
               <th>Title</th>
               <th>Description</th>
+              <th>Created on</th>
+              <th>Category</th>
               <th>Link</th>
               <c:forEach var="poll" items="${listPolls}" varStatus="status">
               <tr>
                   <td>${status.index + 1}</td>
                   <td>${poll.title}</td>
                   <td>${poll.description}</td>
+                  <td>${poll.created}</td>
+                  <td>${poll.categoryName}</td>
                   <th><b><a href='<spring:url value="/poll/${poll.pollId}"/>'>View Poll</a></b></th>
               </tr>
               </c:forEach>             

@@ -47,9 +47,10 @@ public class UserController {
             userModel.addAttribute("success", "User added successfully");
             userModel.addAttribute("user", user);
         } catch (DuplicateKeyException e) {
-            userModel.addAttribute("userExists", "User already exists");
-            String reason = "Message: " + e.getMessage() + " | Root cause: " + e.getRootCause();
-            userModel.addAttribute("reason", reason);
+            userModel.addAttribute("userExists", "Username already exists, try another ones");
+            // for debugging only
+            // String reason = "Message: " + e.getMessage() + " | Root cause: " + e.getRootCause();
+            // userModel.addAttribute("reason", reason);
         } catch (DataAccessException e) {
             String reason = "Message: " + e.getMessage() + " | Root cause: " + e.getRootCause();
             userModel.addAttribute("failure", reason);

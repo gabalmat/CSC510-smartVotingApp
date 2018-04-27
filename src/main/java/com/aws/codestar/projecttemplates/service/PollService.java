@@ -37,4 +37,9 @@ public class PollService {
 	public List<Poll> getUserPolls(final int id) {
 		return pollDao.getUserPolls(id);
 	}
+
+	public List<Poll> getUserPollsWithCat(final int id) {
+		return pollDao.getUserPollsWithCat(id);
+	}
+
 }

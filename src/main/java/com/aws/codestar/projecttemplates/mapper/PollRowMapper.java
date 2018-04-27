@@ -17,6 +17,13 @@ public class PollRowMapper implements RowMapper<Poll> {
 		poll.setPollId(rs.getInt("id"));
 		poll.setUserId(rs.getInt("user_id"));
 		poll.setCategoryId(rs.getInt("category_id"));
+		poll.setCreated(rs.getString("created"));
+		try{
+			poll.setCategoryName(rs.getString("name"));
+		}
+		catch(SQLException e){
+			// no category name in result
+		}
 		
 		return poll;
 	}

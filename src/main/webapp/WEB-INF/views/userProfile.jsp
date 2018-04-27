@@ -31,10 +31,14 @@
           <p></p>
           <br/>
           <img src="${pageContext.request.contextPath}/resources/images/blank-profile-picture.png" width="256" height="256">
-
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
           <h3>${user.username} has created ${pollsCount} polls:</h3>
-
-          <table border="1">
+          <p></p>
+          <p></p>
+          <table border="1" class="pollsTables">
               <th>No</th>
               <th>Title</th>
               <th>Description</th>
