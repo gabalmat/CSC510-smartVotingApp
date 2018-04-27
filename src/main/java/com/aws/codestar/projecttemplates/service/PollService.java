@@ -18,8 +18,9 @@ public class PollService {
 		return pollDao.getPoll(id);
 	}
 	
-	public void addPoll(final Poll poll) {
-		pollDao.addPoll(poll);
+	public int addPoll(final Poll poll) {
+		int id = pollDao.addPoll(poll);
+		return id;
 	}
 	
 	public List<Poll> getPolls() {

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -112,25 +113,40 @@ public class PollController {
 	}
 	
 	@RequestMapping(value = "/add/poll", method = RequestMethod.POST)
-	public String addPoll(@ModelAttribute("newPoll") Poll submittedPoll, BindingResult result, ModelMap pollModel) {
+	public String addPoll(@ModelAttribute("newPoll") Poll submittedPoll, BindingResult result, ModelMap pollOptionsModel) {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String userName = authentication.getName();
 		User user = userService.getUser(userName);
 		
 		submittedPoll.setUserId(user.getUserid());
-		pollService.addPoll(submittedPoll);
+		int id = pollService.addPoll(submittedPoll);
 		
-		pollModel.addAttribute("msg", "Poll added successfully");
-		pollModel.addAttribute("poll", submittedPoll);
-		return "poll";
+		pollOptionsModel.addAttribute("pollId", id);
+		
+		return "redirect:/addPollOptions/{pollId}";
 	}
 	
-	@RequestMapping(value = "/addPollOptions", method = RequestMethod.POST)
-	public String addPollOptions(ModelMap pollOptionsModel) {
+	@RequestMapping(value = "/addPollOptions/{pollId}")
+	public String addPollOptions(@PathVariable int pollId, ModelMap pollOptionsModel) {
+		
+		List<PollOption> options = pollOptionService.getPollOptionsByPoll(pollId);
+		
+		pollOptionsModel.addAttribute("options", options);
+		pollOptionsModel.addAttribute("pollId", pollId);
 		pollOptionsModel.addAttribute("newOption", new PollOption());
 		
-		return "addPollOption";
+		return "addPollOptions";
+	}
+	
+	@RequestMapping(value="/savePollOption", method = RequestMethod.POST)
+	public String savePollOptions(@ModelAttribute("newOption") PollOption option, BindingResult result, ModelMap pollOptionModel) {
+		
+		pollOptionService.addPollOption(option);
+		
+		pollOptionModel.addAttribute("pollId", option.getPollId());
+		
+		return "redirect:/addPollOptions/{pollId}";
 	}
 	
 	@RequestMapping(value = "/vote", method = { RequestMethod.POST, RequestMethod.GET })
