@@ -97,7 +97,7 @@
                 <div style="text-align:center">
                 	<table class=login-form>
                 		<tr>
-                			<td><button id="new-discussion" data-pollId="${poll.pollId}">START NEW DISCUSSION</button></td>
+                			<td><button id="new-discussion" data-pollId="${poll.pollId}">START NEW DISCUSSION BRANCH</button></td>
                 		</tr>
                 	</table>
                 	<table class="discussion-tree">
@@ -119,12 +119,11 @@
 	    	</div>
 	    	
 	    </div>
+	    <br/>
+		<footer>
+      		<p class="footer-contents">Designed and developed by NCSU CSC 510 Team A</p>
+    	</footer>
 	</div>
-	
-	<br/>
-	<footer>
-      	<p class="footer-contents">Designed and developed by NCSU CSC 510 Team A</p>
-    </footer>
 
 	
 	<script src="${setBackgroundJs}"></script>

@@ -57,11 +57,13 @@
           <p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>
         </div>
       </div>
+      <br/>
+	  <br/>
+	  <footer>
+	      <p class="footer-contents">Designed and developed by NCSU CSC 510 Team A</p>
+	  </footer>
     </div>
-
-    <footer>
-      <p class="footer-contents">Designed and developed by NCSU CSC 510 Team A</p>
-    </footer>
+	
 
     <script src="${setBackgroundJs}"></script>
   </body>
