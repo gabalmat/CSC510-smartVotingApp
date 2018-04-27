@@ -47,7 +47,7 @@ artifacts:
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/mapper/CommentRowMapper.class'
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/mapper/PollOptionRowMapper.class'
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/mapper/PollRowMapper.class'
-    - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/mapper/SignCommentMapper.class'
+    - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/mapper/SignCommentRowMapper.class'
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/mapper/UserRowMapper.class'
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/mapper/VoteRowMapper.class'
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/model/Category.class'
@@ -107,3 +107,4 @@ artifacts:
     - 'ROOT/resources/styles.css'
     - 'ROOT/resources/tweet.svg'
     - 'ROOT/resources/images/blank-profile-picture.png'
+    - 'ROOT/resources/images/like.png'
