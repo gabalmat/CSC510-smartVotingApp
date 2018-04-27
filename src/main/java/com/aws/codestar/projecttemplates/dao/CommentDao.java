@@ -30,8 +30,17 @@ public class CommentDao {
     }
     
     public void addComment(final Comment comment) {
-        jdbcTemplate.update("insert into comments (user_id, poll_id, parent_id, content) values (?,?,?,?)",
-                new Object[] { comment.getUserId(), comment.getPollId(), comment.getParentId(), comment.getContent()});
+        
+        if (comment.getParentId() == 0){
+            jdbcTemplate.update("insert into comments (user_id, poll_id, content) values (?,?,?)",
+                new Object[] { comment.getUserId(), comment.getPollId(), comment.getContent()});
+
+        }
+        else {
+            jdbcTemplate.update("insert into comments (user_id, poll_id, parent_id, content) values (?,?,?,?)",
+                    new Object[] { comment.getUserId(), comment.getPollId(), comment.getParentId(), comment.getContent()});
+        }
+        
     }
     
     public List<Comment> getComments() {
