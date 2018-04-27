@@ -95,19 +95,37 @@
 	            </c:choose>
 	            
                 <div style="text-align:center">
+                	<table class=login-form>
+                		<tr>
+                			<td><button id="new-discussion" data-pollId="${poll.pollId}">START NEW DISCUSSION</button></td>
+                		</tr>
+                	</table>
                 	<table class="discussion-tree">
 	                	<tr>
 		                    <td><h3><b>Discussion Tree:</b></h3></td>
+		                    <td style="float:right">
+		                    	<span><img src="${pageContext.request.contextPath}/resources/images/like.png"/></span>
+		                    	<span> - Significant Comment</span>
+		                    </td>
 		                </tr>
 	                	<tr>
-	                		<td><div id="commentTree">${htmlTree}</div></td>
+	                		<td colspan=2><div id="commentTree">${htmlTree}</div></td>
 	                	</tr>
 	                </table>
+	                <br/>
+					<br/>
+					<p><b><a href='<spring:url value="/"/>'>Home Page</a></b></p>
                 </div>
 	    	</div>
-
+	    	
 	    </div>
 	</div>
+	
+	<br/>
+	<footer>
+      	<p class="footer-contents">Designed and developed by NCSU CSC 510 Team A</p>
+    </footer>
+
 	
 	<script src="${setBackgroundJs}"></script>
 	<script type="text/javascript">
@@ -148,7 +166,10 @@
 									
 									$.ajax({
 										type: "POST",
-										url: "/SmartVoting/markSignificant?commentId=" + id + "&pollId=" + pollId
+										url: "/markSignificant?commentId=" + id + "&pollId=" + pollId,
+										success: function() {
+											window.location.href=window.location.href;
+										}
 									});
 									
 								}
@@ -161,14 +182,12 @@
 			$('#commentTree').on('select_node.jstree', function(e, data) {
 				window.location = data.node.a_attr.href;
 			});
+			
+			$("#new-discussion").on('click', function() {
+				var pollId = $(this).attr('data-pollId');
+				window.location.href = "/createComment?parentId=0&pollId=" + pollId;
+			})
 		});
 	</script>
-
-	<p></p>
-	<br/>
-	<p style="text-align:center;"><b><a style="cursor:pointer; text-decoration:underline; " href='<spring:url value="/"/>'>Home Page</a></b></p>
-	<footer>
-      <p class="footer-contents">Designed and developed by NCSU CSC 510 Team A</p>
-    </footer>
 </body>
 </html>

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aws.codestar.projecttemplates.mapper.CommentRowMapper;
+import com.aws.codestar.projecttemplates.mapper.SignCommentRowMapper;
 import com.aws.codestar.projecttemplates.model.Comment;
+import com.aws.codestar.projecttemplates.model.SignComment;
 
 @Repository
 @Transactional
@@ -39,6 +41,14 @@ public class CommentDao {
 
     public List<Comment> getCommentsByPollId(final int pollId) {
         List<Comment> comments = jdbcTemplate.query("select * from comments where poll_id = ? order by created", new Object[] {pollId}, new CommentRowMapper());
+        
+        // for each comment, determine if it is significant; if it is, set the significant property to tru
+        for (Comment comment : comments) {
+        	List<SignComment> signComms = jdbcTemplate.query("select * from significant_comments where comment_id = ?", new Object[] {comment.getId()}, new SignCommentRowMapper());
+        	if (signComms.size() > 0) {		//significant comment
+        		comment.setSignificant(true);
+        	}
+        }
         return comments;
     }
 

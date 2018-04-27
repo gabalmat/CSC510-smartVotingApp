@@ -9,6 +9,9 @@ public class Comment{
     private String content;
     private String created;
     private String username;
+    
+    // additional property not found in database
+    private boolean isSignificant;
 
     public Comment() {}
 
@@ -77,5 +80,13 @@ public class Comment{
     public void setUsername(String username) {
         this.username = username;
     }
+
+	public boolean isSignificant() {
+		return isSignificant;
+	}
+
+	public void setSignificant(boolean isSignificant) {
+		this.isSignificant = isSignificant;
+	}
 
 }

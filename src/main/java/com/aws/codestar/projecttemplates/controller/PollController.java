@@ -260,8 +260,14 @@ public class PollController {
 		String html = "<ul>";
 		for (int i = 0; i <nodeArray.size(); i++) {
 			TreeNode<Comment> node = nodeArray.get(i);
-			html += "<li class='jstree-open' title='Right click for menu' data-id='" + node.getData().getId() + "'" + "data-pollid='" + node.getData().getPollId() + "'>" + 
-							formatContent2(node.getData());
+			if (node.getData().isSignificant()) {
+				html += "<li data-jstree='{\"icon\":\"../resources/images/like.png\"}' class='jstree-open' title='Right click for menu' data-id='" + node.getData().getId() + "'" + "data-pollid='" + node.getData().getPollId() + "'>" + 
+						formatContent2(node.getData());
+			} else {
+				html += "<li class='jstree-open' title='Right click for menu' data-id='" + node.getData().getId() + "'" + "data-pollid='" + node.getData().getPollId() + "'>" + 
+						formatContent2(node.getData());
+			}
+			
 			if (node.getChildren().size() > 0) {
 				html += generateHTML(node.getChildren());
 			}

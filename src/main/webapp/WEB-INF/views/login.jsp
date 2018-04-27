@@ -50,12 +50,11 @@
 	        </div>
 	      </div>
 	    </div>
-	  
-  	  <br/>
-	  
-	  <footer>
-	  	<p class="footer-contents">Designed and developed by NCSU CSC 510 Team A</p>
-	  </footer>
+	    
+	    <br/>
+	      <footer>
+	  		<p class="footer-contents">Designed and developed by NCSU CSC 510 Team A</p>
+	  	</footer>
 	
 	  <script src="${setBackgroundJs}"></script>
 	</body>

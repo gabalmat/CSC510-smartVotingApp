@@ -50,6 +50,11 @@ a {
 	height: 100%;
 	margin: 0 auto -7rem;
 	position: relative;
+	text-align: center;
+}
+
+footer {
+	float: left;
 }
 
 footer, .push {
@@ -177,7 +182,9 @@ keyframes dash {to { stroke-dashoffset:0;
 	.poll-content {
 		padding: 0;
 		width: 75%;
-		left: calc(50vw - 55rem);
+		margin: auto;
+		left:0;
+/* 		left: calc(50vw - 55rem); */
 	}
 }
 
@@ -336,7 +343,7 @@ input[type=text] {
 .discussion-tree {
 	background-color: #c7ced0;
     border: 1px solid black;
-    margin: 10px;
+    margin: auto;
     padding: 30px;
     color: #161717;
 }
@@ -359,4 +366,9 @@ input[type=text] {
 }
 .jstree-leaf a{
     height: auto !important;
+}
+
+.significant {
+	color: red;
+	font-weight: normal;
 }
