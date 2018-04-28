@@ -39,7 +39,7 @@ artifacts:
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/dao/CategoryDao.class'
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/dao/CommentDao.class'
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/dao/PollDao.class'
-    - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/dao/PollDao$1.class'
+    - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/dao/PollDao$PreparedStatementCreator.class'
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/dao/PollOptionDao.class'
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/dao/SignCommentDao.class'
     - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/dao/UserDao.class'
