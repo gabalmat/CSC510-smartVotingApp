@@ -20,8 +20,8 @@
         <nav class="website-nav"></nav>
       </header>
       
-    <div class="message">
-      <div class="text">
+    <div class="message poll-content">
+      <div class="text full-width">
         <h2>Create a New User</h2>
         <form method="POST" name="add_user" action="<%=request.getContextPath()%>/userCreateResult">
           <table class=login-form>

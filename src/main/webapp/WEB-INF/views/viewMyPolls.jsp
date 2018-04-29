@@ -23,7 +23,7 @@
       </header>
 
       <div class="message poll-content">
-        <div class="text">
+        <div class="text full-width">
           <h2>My Polls</h2>
           <h3>You have ${myPollsCount} polls:</h3>
 

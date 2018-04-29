@@ -24,7 +24,7 @@
       </header>
 
       <div class="message poll-content">
-        <div class="text">
+        <div class="text full-width">
           <h2>Type the search criteria below to search for a poll:</h2>
 
           <form:form action="/searchResults" method="POST" modelAttribute="category">

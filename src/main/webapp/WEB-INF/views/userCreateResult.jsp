@@ -24,7 +24,7 @@
 	    </header>
 	    
 	    <div class="message poll-content">
-	    	<div class="text">
+	    	<div class="text full-width">
 				<c:if test="${not empty success}">
                     <h2>${success}</h2>
                     <h2>Please go back to the home page and login to proceed</h2>

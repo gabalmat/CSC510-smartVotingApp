@@ -21,8 +21,8 @@
         <nav class="website-nav"></nav>
       </header>
       
-    <div class="message">
-      <div class="text">
+    <div class="message poll-content">
+      <div class="text full-width">
         <h2>Create a New Poll</h2>
         <form:form method="POST" action="${pageContext.request.contextPath}/add/poll" modelAttribute="newPoll">
           <table class=login-form>

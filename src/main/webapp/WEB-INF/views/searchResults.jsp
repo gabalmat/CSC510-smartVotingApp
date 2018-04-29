@@ -23,7 +23,7 @@
       </header>
 
       <div class="message poll-content">
-        <div class="text">
+        <div class="text full-width">
           <h3>Search criteria:</h3>
           <h3>Query: "${criteriaChoice}"  -  Category: ${categoryChoice}</h3>
           <h3>Found ${searchCount} results</h3>

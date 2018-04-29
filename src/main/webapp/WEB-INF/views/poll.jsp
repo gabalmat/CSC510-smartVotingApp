@@ -32,7 +32,7 @@
 	    </header>
 	    
 	    <div class="message poll-content">
-	    	<div class="text">
+	    	<div class="text full-width">
 	    		<h2>${poll.title}</h2>
 				<c:if test="${not empty msg}">
 					${msg}

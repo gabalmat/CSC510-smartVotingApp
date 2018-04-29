@@ -23,7 +23,7 @@
       </header>
 
       <div class="message poll-content">
-        <div class="text">
+        <div class="text full-width">
           <h2 class="margin-bottom-3">${user.firstName} ${user.lastName}</h2>
           <h3 class="margin-bottom-3">Email: ${user.email}</h3>
           <h3 class="margin-bottom-3">Username: ${user.username}</h3>

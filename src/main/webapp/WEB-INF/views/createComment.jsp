@@ -20,8 +20,8 @@
         <nav class="website-nav"></nav>
       </header>
       
-    <div class="message">
-      <div class="text">
+    <div class="message poll-content">
+      <div class="text full-width">
         <h2>Create a New Comment</h2>
         <form method="POST" name="add_comment" action="<%=request.getContextPath()%>/commentCreateResult">
           <table class=login-form>

@@ -348,7 +348,7 @@ input[type=radio] {
     margin: auto;
     padding: 30px;
     color: #161717;
-    width: 85%;
+    width: 80%;
 }
 
 .discussion-tree td {
@@ -374,4 +374,8 @@ input[type=radio] {
 .significant {
 	color: red;
 	font-weight: normal;
+}
+
+.full-width {
+	width: 100%;
 }

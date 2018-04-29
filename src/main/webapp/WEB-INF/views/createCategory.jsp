@@ -20,8 +20,8 @@
         <nav class="website-nav"></nav>
       </header>
       
-    <div class="message">
-      <div class="text">
+    <div class="message poll-content">
+      <div class="text full-width">
         <h2>Create a New Category</h2>
         <form method="POST" name="add_category" action="<%=request.getContextPath()%>/categoryCreateResult">
           <table class=login-form>

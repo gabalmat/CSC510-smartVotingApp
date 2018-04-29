@@ -21,8 +21,8 @@
         <nav class="website-nav"></nav>
       </header>
 
-      <div class="message">
-        <div class="text">
+      <div class="message poll-content">
+        <div class="text full-width">
           <h1>${siteName}</h1> 
   	  	  <h3 class="margin-bottom-3">${welcomeMessage}</h3>
           <p></p>
