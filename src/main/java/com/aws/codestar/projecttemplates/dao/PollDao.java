@@ -2,8 +2,12 @@ package com.aws.codestar.projecttemplates.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
+
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,32 +27,67 @@ public class PollDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	@Autowired
+	private DataSource dataSource;
+	
 	public Poll getPoll(final int id) {
 		Poll poll = jdbcTemplate.queryForObject("select * from polls where id = ?", new Object[] {id}, new PollRowMapper());
 		return poll;
 	}
 	
-	public int addPoll(final Poll poll) {
+	public int addPoll(final Poll poll) throws SQLException {
 		
-		String sql = "insert into polls (title, description, user_id, category_id) values(?,?,?,?)";
-		KeyHolder keyHolder = new GeneratedKeyHolder();
+		String sql = "insert into polls (title, description, user_id, category_id) values(?,?,?,?) RETURNING id;--";
+		int pollId;
 		
-		jdbcTemplate.update(
-			new PreparedStatementCreator() {
-				public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-					PreparedStatement ps = 
-						connection.prepareStatement(sql, new String[] {"id"});
-						ps.setString(1, poll.getTitle());
-						ps.setString(2, poll.getDescription());
-						ps.setInt(3, poll.getUserId());
-						ps.setInt(4, poll.getCategoryId());
-						
-						return ps;
+		try (
+				Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			) {
+				statement.setString(1, poll.getTitle());
+				statement.setString(2, poll.getDescription());
+				statement.setInt(3, poll.getUserId());
+				statement.setInt(4, poll.getCategoryId());
+				
+				int affectedRows = statement.executeUpdate();
+				
+				if (affectedRows == 0) {
+					throw new SQLException("Creating Poll failed, no rows affected");
 				}
-			
-		}, keyHolder);
+				
+				try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+					if (generatedKeys.next()) {
+						pollId = generatedKeys.getInt("id");
+						poll.setPollId(pollId);
+					}
+					else {
+						throw new SQLException("Creating Poll failed, no ID obtained");
+					}
+				}
+			}
 		
-		return keyHolder.getKey().intValue();
+		return pollId;
+		
+		
+		
+//		KeyHolder keyHolder = new GeneratedKeyHolder();
+//		
+//		jdbcTemplate.update(
+//			new PreparedStatementCreator() {
+//				public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+//					PreparedStatement ps = 
+//						connection.prepareStatement(sql, new String[] {"id"});
+//						ps.setString(1, poll.getTitle());
+//						ps.setString(2, poll.getDescription());
+//						ps.setInt(3, poll.getUserId());
+//						ps.setInt(4, poll.getCategoryId());
+//						
+//						return ps;
+//				}
+//			
+//		}, keyHolder);
+//		
+//		return keyHolder.getKey().intValue();
 	}
 	
 	public List<Poll> getPolls() {

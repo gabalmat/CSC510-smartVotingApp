@@ -1,6 +1,7 @@
 package com.aws.codestar.projecttemplates.controller;
 
 import java.util.List;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,7 +114,7 @@ public class PollController {
 	}
 	
 	@RequestMapping(value = "/add/poll", method = RequestMethod.POST)
-	public String addPoll(@ModelAttribute("newPoll") Poll submittedPoll, BindingResult result, ModelMap pollOptionsModel) {
+	public String addPoll(@ModelAttribute("newPoll") Poll submittedPoll, BindingResult result, ModelMap pollOptionsModel) throws SQLException {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String userName = authentication.getName();

@@ -1,5 +1,6 @@
 package com.aws.codestar.projecttemplates.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class PollService {
 		return pollDao.getPoll(id);
 	}
 	
-	public int addPoll(final Poll poll) {
+	public int addPoll(final Poll poll) throws SQLException {
 		int id = pollDao.addPoll(poll);
 		return id;
 	}

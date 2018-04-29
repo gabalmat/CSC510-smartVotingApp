@@ -24,7 +24,8 @@
       
       <div class="message poll-content">
       	<div class="text">
-      		<h2>${poll.getTitle()} - Voting Options</h2>
+      		<h2>${poll.getTitle()}</h2>
+      		<h2>Add Voting Options</h2>
       		<c:if test="${not empty options}">
       			<table class="login-form" style="margin-bottom: 30px;">
 	      			<c:forEach var="option" items="${options}" varStatus="status">
