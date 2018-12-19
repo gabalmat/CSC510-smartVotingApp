@@ -1,6 +1,6 @@
 # NCSU CSC 510 (Software Engineering) Final Project
 
-*SmartVoting* web application will allow its subscribers or voters to easily access debates on particular issues before voting, and then after voting, the application could allow the voter to cite which argument/priority in the debate tree swayed them most to make their selection. Some items to consider for SmartVoting include:
+*SmartVoting* is a Java Spring web application allowing its subscribers or voters to easily access debates on particular issues before voting, and then after voting, the application allows the voter to cite which argument/priority in the debate tree swayed them most to make their selection. Some items to consider for SmartVoting include:
 1.	The application shall accept voter subscriptions for specific issues. For example, if a company is considering making a change to a product, potential voters should be able to subscribe to this topic. Similarly, it could be an issue that the Government (local or Federal) may be considering as a potential to draft legislation.
 2.	The application should be able to show subscribers the different topics that are being considered for voting.
 3.	The application shall also allow to follow discussion trails and voters should be able to provide their ideas and display them into a tree-like structure.
